@@ -1,0 +1,660 @@
+import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+
+// ─── Paleta neón ──────────────────────────────────────────────────────────────
+// Fondo:   #0A0A12
+// Fuxia:   #FF2DA6
+// Morado:  #A855F7
+// Azul:    #00C8FF
+// Amarillo:#FACC15
+// ─────────────────────────────────────────────────────────────────────────────
+
+const APPS_RAPIDAS = [
+  {
+    categoria: 'Gramática',
+    nombre: 'Conjuanjugator',
+    tags: ['Conjugación', 'Verbos'],
+    color: '#FF2DA6',
+    url: 'https://conjuanjugator2.netlify.app/',
+  },
+  {
+    categoria: 'Conversación',
+    nombre: 'Convozjugator',
+    tags: ['Pronunciación', 'Tiempos'],
+    color: '#A855F7',
+    url: 'https://convozjugator.netlify.app/',
+  },
+  {
+    categoria: 'Léxico',
+    nombre: 'Ponlo',
+    tags: ['Colocaciones', 'Imperativo'],
+    color: '#00C8FF',
+    url: 'https://ponlo.netlify.app/',
+  },
+];
+
+// ─── Insignia Orión — SVG estático con paleta neón ───────────────────────────
+function InsigniaStatic({ size = 80 }) {
+  return (
+    <svg
+      viewBox="-24 -24 173 173"
+      width={size}
+      height={size}
+      style={{ display: 'block', flexShrink: 0 }}
+    >
+      <defs>
+        <radialGradient id="sn-gb" cx="35%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#FF2DA6"/>
+          <stop offset="100%" stopColor="#A855F7"/>
+        </radialGradient>
+        <radialGradient id="sn-gr" cx="35%" cy="50%" r="65%">
+          <stop offset="0%" stopColor="#FFFFFF"/>
+          <stop offset="50%" stopColor="#00C8FF"/>
+          <stop offset="100%" stopColor="#A855F7"/>
+        </radialGradient>
+        <radialGradient id="sn-hb" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#FF2DA6" stopOpacity="0.35"/>
+          <stop offset="100%" stopColor="#FF2DA6" stopOpacity="0"/>
+        </radialGradient>
+        <radialGradient id="sn-hr" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#00C8FF" stopOpacity="0.4"/>
+          <stop offset="100%" stopColor="#00C8FF" stopOpacity="0"/>
+        </radialGradient>
+        <filter id="sn-glow">
+          <feGaussianBlur stdDeviation="2" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      <circle cx="24"  cy="14"  r="22" fill="url(#sn-hb)"/>
+      <circle cx="100" cy="100" r="22" fill="url(#sn-hr)"/>
+
+      <line x1="24" y1="14" x2="88" y2="26" stroke="#A855F7" strokeWidth="1.2" strokeLinecap="round"/>
+      <line x1="24" y1="14" x2="34" y2="60" stroke="#A855F7" strokeWidth="1.2" strokeLinecap="round"/>
+      <line x1="88" y1="26" x2="78" y2="52" stroke="#A855F7" strokeWidth="1.2" strokeLinecap="round"/>
+      <line x1="34" y1="60" x2="56" y2="58" stroke="#00C8FF" strokeWidth="2"   strokeLinecap="round"/>
+      <line x1="56" y1="58" x2="78" y2="52" stroke="#00C8FF" strokeWidth="2"   strokeLinecap="round"/>
+      <line x1="34" y1="60" x2="20" y2="108" stroke="#A855F7" strokeWidth="1.2" strokeLinecap="round"/>
+      <line x1="78" y1="52" x2="100" y2="100" stroke="#A855F7" strokeWidth="1.2" strokeLinecap="round"/>
+      <line x1="20" y1="108" x2="100" y2="100" stroke="#00C8FF" strokeWidth="0.8"
+        strokeDasharray="3,4" strokeLinecap="round"/>
+
+      <g filter="url(#sn-glow)">
+        <circle cx="24" cy="14" r="10" fill="url(#sn-gb)"/>
+      </g>
+      <circle cx="88" cy="26" r="7"   fill="#A855F7"/>
+      <circle cx="34" cy="60" r="5"   fill="#00C8FF"/>
+      <circle cx="56" cy="58" r="5"   fill="#00C8FF"/>
+      <circle cx="78" cy="52" r="5"   fill="#00C8FF"/>
+      <circle cx="20" cy="108" r="6"  fill="#A855F7"/>
+      <g filter="url(#sn-glow)">
+        <circle cx="100" cy="100" r="10" fill="url(#sn-gr)"/>
+        <circle cx="100" cy="100" r="10" fill="none" stroke="#0A0A12" strokeWidth="0.8"/>
+        <text x="100" y="104" textAnchor="middle"
+          fontFamily="Georgia,serif" fontSize="11" fontWeight="700" fill="#0A0A12">S</text>
+      </g>
+
+      <line x1="24" y1="1"  x2="24" y2="5"  stroke="#FF2DA6" strokeWidth="0.8" strokeLinecap="round"/>
+      <line x1="24" y1="23" x2="24" y2="27" stroke="#FF2DA6" strokeWidth="0.8" strokeLinecap="round"/>
+      <line x1="11" y1="14" x2="15" y2="14" stroke="#FF2DA6" strokeWidth="0.8" strokeLinecap="round"/>
+      <line x1="33" y1="14" x2="37" y2="14" stroke="#FF2DA6" strokeWidth="0.8" strokeLinecap="round"/>
+      <line x1="100" y1="87"  x2="100" y2="91"  stroke="#00C8FF" strokeWidth="0.8" strokeLinecap="round"/>
+      <line x1="100" y1="109" x2="100" y2="113" stroke="#00C8FF" strokeWidth="0.8" strokeLinecap="round"/>
+      <line x1="87"  y1="100" x2="91"  y2="100" stroke="#00C8FF" strokeWidth="0.8" strokeLinecap="round"/>
+      <line x1="109" y1="100" x2="113" y2="100" stroke="#00C8FF" strokeWidth="0.8" strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+// ─── Insignia Orión — animada con nacimiento estelar (solo una vez) ───────────
+function InsigniaAnimada({ size = 120 }) {
+  const svgRef = useRef(null);
+
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+
+    const STARS = [
+      { id: 'an-betelgeuse', ox: 60,  oy: 60  },
+      { id: 'an-bellatrix',  ox: -50, oy: 50  },
+      { id: 'an-mintaka',    ox: 35,  oy: -45 },
+      { id: 'an-alnilam',    ox: -40, oy: -35 },
+      { id: 'an-alnitak',    ox: -35, oy: 40  },
+      { id: 'an-saiph',      ox: 55,  oy: -50 },
+      { id: 'an-rigel',      ox: -55, oy: -40 },
+    ];
+
+    const LINES = ['an-l1','an-l2','an-l3','an-l4','an-l5','an-l6','an-l7','an-l8'];
+    const FLASHES = ['an-fl1','an-fl2','an-fl3','an-fl4','an-fl5','an-fl6','an-fl7'];
+    const HALOS = ['an-hb','an-hr'];
+    const DESTS = ['an-db','an-dr'];
+
+    const STAR_DUR = 900;
+    const STAR_DELAY = 200;
+    const LINE_START = STARS.length * STAR_DELAY + STAR_DUR + 200;
+    const LINE_DUR = 380;
+    const LINE_DELAY = 120;
+
+    function ease(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
+    function easeOut(t) { return 1 - Math.pow(1-t,3); }
+
+    function animate({ duration, delay = 0, onProgress, onDone }) {
+      const start = performance.now() + delay;
+      function frame(now) {
+        const elapsed = now - start;
+        if (elapsed < 0) { requestAnimationFrame(frame); return; }
+        const t = Math.min(1, elapsed / duration);
+        onProgress(t);
+        if (t < 1) requestAnimationFrame(frame);
+        else if (onDone) onDone();
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function fadeIn(el, dur, delay) {
+      animate({ duration: dur, delay, onProgress(t) { el.setAttribute('opacity', easeOut(t)); } });
+    }
+
+    function animateFlash(el) {
+      animate({
+        duration: 550,
+        onProgress(t) {
+          const r = easeOut(t) * 26;
+          const op = t < 0.15 ? t/0.15 : 1-(t-0.15)/0.85;
+          el.setAttribute('r', r);
+          el.setAttribute('opacity', op * 0.9);
+        },
+        onDone() { el.setAttribute('opacity', 0); }
+      });
+    }
+
+    // Animar estrellas
+    STARS.forEach((s, i) => {
+      const el = svg.getElementById(s.id);
+      if (!el) return;
+      const flashEl = svg.getElementById(FLASHES[i]);
+
+      const finalX = parseFloat(el.getAttribute('data-fx') || 0);
+      const finalY = parseFloat(el.getAttribute('data-fy') || 0);
+      const cx = (finalX + s.ox + finalX) / 2 + (finalY - s.oy) * 0.3;
+      const cy = (finalY + s.oy + finalY) / 2 + (s.ox - finalX) * 0.3;
+
+      animate({
+        duration: STAR_DUR,
+        delay: i * STAR_DELAY,
+        onProgress(t) {
+          const et = ease(t);
+          const bx = (1-et)*(1-et)*s.ox + 2*(1-et)*et*(cx-finalX) + et*et*0;
+          const by = (1-et)*(1-et)*s.oy + 2*(1-et)*et*(cy-finalY) + et*et*0;
+          const sc = 0.05 + 0.95*et;
+          el.setAttribute('opacity', Math.min(1, t * 3));
+          el.setAttribute('transform', `translate(${bx},${by}) scale(${sc})`);
+          if (el.style) el.style.transformOrigin = `${finalX}px ${finalY}px`;
+        },
+        onDone() {
+          el.removeAttribute('transform');
+          el.setAttribute('opacity', 1);
+          if (flashEl) animateFlash(flashEl);
+          if (i === 0) { setTimeout(() => fadeIn(svg.getElementById('an-hb'), 600, 0), 100); setTimeout(() => fadeIn(svg.getElementById('an-db'), 300, 200), 100); }
+          if (i === 6) { setTimeout(() => fadeIn(svg.getElementById('an-hr'), 600, 0), 100); setTimeout(() => fadeIn(svg.getElementById('an-dr'), 300, 200), 100); }
+        }
+      });
+    });
+
+    // Animar líneas
+    LINES.forEach((id, li) => {
+      const el = svg.getElementById(id);
+      if (!el) return;
+      const isDash = li === 7;
+      const delay = LINE_START + li * LINE_DELAY;
+
+      if (isDash) {
+        animate({ duration: LINE_DUR, delay, onProgress(t) { el.setAttribute('opacity', easeOut(t)); } });
+      } else {
+        const len = Math.hypot(
+          el.x2.baseVal.value - el.x1.baseVal.value,
+          el.y2.baseVal.value - el.y1.baseVal.value
+        );
+        el.setAttribute('opacity', 1);
+        el.style.strokeDasharray = len;
+        el.style.strokeDashoffset = len;
+        animate({
+          duration: LINE_DUR, delay,
+          onProgress(t) { el.style.strokeDashoffset = len * (1 - easeOut(t)); }
+        });
+      }
+    });
+
+  }, []);
+
+  return (
+    <svg
+      ref={svgRef}
+      viewBox="-24 -24 173 173"
+      width={size}
+      height={size}
+      style={{ display: 'block' }}
+    >
+      <defs>
+        <radialGradient id="an-gb" cx="35%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#FF2DA6"/>
+          <stop offset="100%" stopColor="#A855F7"/>
+        </radialGradient>
+        <radialGradient id="an-gr" cx="35%" cy="50%" r="65%">
+          <stop offset="0%" stopColor="#FFFFFF"/>
+          <stop offset="50%" stopColor="#00C8FF"/>
+          <stop offset="100%" stopColor="#A855F7"/>
+        </radialGradient>
+        <radialGradient id="an-hb" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#FF2DA6" stopOpacity="0.35"/>
+          <stop offset="100%" stopColor="#FF2DA6" stopOpacity="0"/>
+        </radialGradient>
+        <radialGradient id="an-hr-g" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#00C8FF" stopOpacity="0.4"/>
+          <stop offset="100%" stopColor="#00C8FF" stopOpacity="0"/>
+        </radialGradient>
+        <radialGradient id="an-flash" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stopColor="#FFFFFF" stopOpacity="1"/>
+          <stop offset="100%" stopColor="#A855F7" stopOpacity="0"/>
+        </radialGradient>
+        <filter id="an-glow">
+          <feGaussianBlur stdDeviation="2.5" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="an-glow-sm">
+          <feGaussianBlur stdDeviation="1" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+
+      {/* Halos */}
+      <circle id="an-hb" cx="24"  cy="14"  r="22" fill="url(#an-hb)"  opacity="0"/>
+      <circle id="an-hr" cx="100" cy="100" r="22" fill="url(#an-hr-g)" opacity="0"/>
+
+      {/* Líneas */}
+      <line id="an-l1" x1="24"  y1="14"  x2="88"  y2="26"  stroke="#A855F7" strokeWidth="1.2" strokeLinecap="round" opacity="0"/>
+      <line id="an-l2" x1="24"  y1="14"  x2="34"  y2="60"  stroke="#A855F7" strokeWidth="1.2" strokeLinecap="round" opacity="0"/>
+      <line id="an-l3" x1="88"  y1="26"  x2="78"  y2="52"  stroke="#A855F7" strokeWidth="1.2" strokeLinecap="round" opacity="0"/>
+      <line id="an-l4" x1="34"  y1="60"  x2="56"  y2="58"  stroke="#00C8FF" strokeWidth="2"   strokeLinecap="round" opacity="0" filter="url(#an-glow-sm)"/>
+      <line id="an-l5" x1="56"  y1="58"  x2="78"  y2="52"  stroke="#00C8FF" strokeWidth="2"   strokeLinecap="round" opacity="0" filter="url(#an-glow-sm)"/>
+      <line id="an-l6" x1="34"  y1="60"  x2="20"  y2="108" stroke="#A855F7" strokeWidth="1.2" strokeLinecap="round" opacity="0"/>
+      <line id="an-l7" x1="78"  y1="52"  x2="100" y2="100" stroke="#A855F7" strokeWidth="1.2" strokeLinecap="round" opacity="0"/>
+      <line id="an-l8" x1="20"  y1="108" x2="100" y2="100" stroke="#00C8FF" strokeWidth="0.8"
+        strokeDasharray="3,4" strokeLinecap="round" opacity="0"/>
+
+      {/* Estrellas */}
+      <g id="an-betelgeuse" opacity="0" data-fx="24" data-fy="14" filter="url(#an-glow)">
+        <circle cx="24" cy="14" r="10" fill="url(#an-gb)"/>
+      </g>
+      <g id="an-bellatrix" opacity="0" data-fx="88" data-fy="26">
+        <circle cx="88" cy="26" r="7" fill="#A855F7"/>
+      </g>
+      <g id="an-mintaka" opacity="0" data-fx="34" data-fy="60">
+        <circle cx="34" cy="60" r="5" fill="#00C8FF"/>
+      </g>
+      <g id="an-alnilam" opacity="0" data-fx="56" data-fy="58">
+        <circle cx="56" cy="58" r="5" fill="#00C8FF"/>
+      </g>
+      <g id="an-alnitak" opacity="0" data-fx="78" data-fy="52">
+        <circle cx="78" cy="52" r="5" fill="#00C8FF"/>
+      </g>
+      <g id="an-saiph" opacity="0" data-fx="20" data-fy="108">
+        <circle cx="20" cy="108" r="6" fill="#A855F7"/>
+      </g>
+      <g id="an-rigel" opacity="0" data-fx="100" data-fy="100" filter="url(#an-glow)">
+        <circle cx="100" cy="100" r="10" fill="url(#an-gr)"/>
+        <circle cx="100" cy="100" r="10" fill="none" stroke="#0A0A12" strokeWidth="0.8"/>
+        <text x="100" y="104" textAnchor="middle"
+          fontFamily="Georgia,serif" fontSize="11" fontWeight="700" fill="#0A0A12">S</text>
+      </g>
+
+      {/* Flashes */}
+      <circle id="an-fl1" cx="24"  cy="14"  r="1" fill="url(#an-flash)" opacity="0"/>
+      <circle id="an-fl2" cx="88"  cy="26"  r="1" fill="url(#an-flash)" opacity="0"/>
+      <circle id="an-fl3" cx="34"  cy="60"  r="1" fill="url(#an-flash)" opacity="0"/>
+      <circle id="an-fl4" cx="56"  cy="58"  r="1" fill="url(#an-flash)" opacity="0"/>
+      <circle id="an-fl5" cx="78"  cy="52"  r="1" fill="url(#an-flash)" opacity="0"/>
+      <circle id="an-fl6" cx="20"  cy="108" r="1" fill="url(#an-flash)" opacity="0"/>
+      <circle id="an-fl7" cx="100" cy="100" r="1" fill="url(#an-flash)" opacity="0"/>
+
+      {/* Destellos */}
+      <g id="an-db" opacity="0">
+        <line x1="24" y1="1"  x2="24" y2="5"  stroke="#FF2DA6" strokeWidth="0.8" strokeLinecap="round"/>
+        <line x1="24" y1="23" x2="24" y2="27" stroke="#FF2DA6" strokeWidth="0.8" strokeLinecap="round"/>
+        <line x1="11" y1="14" x2="15" y2="14" stroke="#FF2DA6" strokeWidth="0.8" strokeLinecap="round"/>
+        <line x1="33" y1="14" x2="37" y2="14" stroke="#FF2DA6" strokeWidth="0.8" strokeLinecap="round"/>
+      </g>
+      <g id="an-dr" opacity="0">
+        <line x1="100" y1="87"  x2="100" y2="91"  stroke="#00C8FF" strokeWidth="0.8" strokeLinecap="round"/>
+        <line x1="100" y1="109" x2="100" y2="113" stroke="#00C8FF" strokeWidth="0.8" strokeLinecap="round"/>
+        <line x1="87"  y1="100" x2="91"  y2="100" stroke="#00C8FF" strokeWidth="0.8" strokeLinecap="round"/>
+        <line x1="109" y1="100" x2="113" y2="100" stroke="#00C8FF" strokeWidth="0.8" strokeLinecap="round"/>
+      </g>
+    </svg>
+  );
+}
+
+// ─── Página Inicio ────────────────────────────────────────────────────────────
+
+export default function Inicio() {
+  return (
+    <div style={{ background: '#0A0A12', minHeight: '100vh', fontFamily: "'DM Sans', sans-serif" }}>
+
+      {/* ── Navbar ── */}
+      <nav style={{
+        background: 'rgba(10,10,18,0.97)',
+        borderBottom: '1px solid rgba(168,85,247,0.2)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 50,
+        padding: '0 1.5rem',
+        height: '64px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}>
+        {/* Brand con insignia animada */}
+        <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <InsigniaAnimada size={44} />
+          <span style={{
+            fontFamily: "'Playfair Display', serif",
+            fontWeight: '700',
+            fontSize: '20px',
+            letterSpacing: '0.14em',
+          }}>
+            <span style={{ color: '#FF2DA6' }}>SI</span>
+            <span style={{ color: '#A855F7' }}>LAB</span>
+            <span style={{ color: '#00C8FF' }}>OS</span>
+          </span>
+        </Link>
+
+        {/* Links */}
+        <ul style={{ display: 'flex', alignItems: 'center', gap: '2rem', listStyle: 'none', margin: 0, padding: 0 }}
+          className="desktop-nav">
+          {[
+            { to: '/',        label: 'Inicio' },
+            { to: '/ia',      label: 'IA & ELE' },
+            { to: '/podcast', label: 'Podcast' },
+            { to: '/clases',  label: 'Clases' },
+          ].map(l => (
+            <li key={l.to}>
+              <Link to={l.to} style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '12px',
+                fontWeight: '400',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.5)',
+                textDecoration: 'none',
+              }}>{l.label}</Link>
+            </li>
+          ))}
+          <li>
+            <Link to="/contacto" style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '12px',
+              fontWeight: '500',
+              letterSpacing: '0.07em',
+              textTransform: 'uppercase',
+              color: '#fff',
+              background: 'linear-gradient(135deg, #FF2DA6, #A855F7)',
+              padding: '9px 20px',
+              borderRadius: '2px',
+              textDecoration: 'none',
+            }}>Contacto</Link>
+          </li>
+        </ul>
+
+        <style>{`
+          @media (max-width: 768px) { .desktop-nav { display: none !important; } }
+        `}</style>
+      </nav>
+
+      {/* ── Hero ── */}
+      <section style={{ padding: '5rem 1.5rem 3rem', position: 'relative', overflow: 'hidden' }}>
+        {/* Halos de fondo */}
+        <div style={{ position: 'absolute', top: '-100px', left: '-80px', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(255,45,166,0.15) 0%, transparent 70%)', pointerEvents: 'none' }}/>
+        <div style={{ position: 'absolute', top: '0', right: '-60px', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(0,200,255,0.12) 0%, transparent 70%)', pointerEvents: 'none' }}/>
+
+        <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '3rem', alignItems: 'center', position: 'relative', zIndex: 1 }}>
+
+          {/* Copy */}
+          <div>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: '6px',
+              background: 'rgba(255,45,166,0.1)',
+              border: '0.5px solid rgba(255,45,166,0.4)',
+              borderRadius: '20px',
+              padding: '5px 14px',
+              fontSize: '11px',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: '#FF2DA6',
+              marginBottom: '1.5rem',
+            }}>
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#FF2DA6', display: 'inline-block' }}/>
+              Pedagogía · IA · ELE
+            </div>
+
+            <h1 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontWeight: '700',
+              fontSize: 'clamp(36px, 5vw, 58px)',
+              lineHeight: '1.08',
+              color: '#fff',
+              marginBottom: '1.25rem',
+            }}>
+              Aprende español<br/>
+              con{' '}
+              <em style={{
+                fontStyle: 'italic',
+                background: 'linear-gradient(135deg, #FF2DA6 0%, #A855F7 50%, #00C8FF 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}>inteligencia</em>
+            </h1>
+
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '16px',
+              color: 'rgba(255,255,255,0.6)',
+              lineHeight: '1.75',
+              maxWidth: '400px',
+              marginBottom: '2.5rem',
+            }}>
+              Apps interactivas, clases personalizadas y recursos con IA
+              para estudiantes y entidades educativas que quieren llevar
+              el español más lejos.
+            </p>
+
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+              <Link to="/ia" style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '13px',
+                fontWeight: '500',
+                letterSpacing: '0.07em',
+                textTransform: 'uppercase',
+                color: '#fff',
+                background: 'linear-gradient(135deg, #FF2DA6, #A855F7)',
+                padding: '13px 28px',
+                borderRadius: '2px',
+                textDecoration: 'none',
+              }}>Explorar apps →</Link>
+              <Link to="/clases" style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: '13px',
+                color: 'rgba(255,255,255,0.5)',
+                textDecoration: 'underline',
+                textUnderlineOffset: '3px',
+              }}>Ver clases</Link>
+            </div>
+          </div>
+
+          {/* Apps rápidas */}
+          <div>
+            <p style={{ fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '0.75rem' }}>
+              Apps disponibles ahora
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {APPS_RAPIDAS.map((app, i) => (
+                <a key={i} href={app.url} target="_blank" rel="noopener noreferrer"
+                  style={{ textDecoration: 'none' }}>
+                  <div style={{
+                    background: 'rgba(255,255,255,0.03)',
+                    border: `0.5px solid rgba(255,255,255,0.08)`,
+                    borderLeft: `2px solid ${app.color}`,
+                    borderRadius: '4px',
+                    padding: '0.875rem 1rem',
+                    transition: 'background 0.2s',
+                  }}
+                    onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.07)'}
+                    onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.03)'}
+                  >
+                    <p style={{ fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: app.color, marginBottom: '4px' }}>{app.categoria}</p>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '16px', color: '#fff', marginBottom: '6px' }}>{app.nombre}</p>
+                    <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
+                      {app.tags.map((tag, j) => (
+                        <span key={j} style={{
+                          fontSize: '10px',
+                          color: app.color,
+                          border: `0.5px solid ${app.color}66`,
+                          padding: '2px 7px',
+                          borderRadius: '2px',
+                        }}>{tag}</span>
+                      ))}
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Stats ── */}
+      <section style={{ padding: '0 1.5rem', marginBottom: '0' }}>
+        <div style={{
+          maxWidth: '1100px',
+          margin: '0 auto',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+          gap: '1px',
+          background: 'rgba(255,255,255,0.05)',
+          border: '0.5px solid rgba(255,255,255,0.05)',
+          borderRadius: '4px',
+          overflow: 'hidden',
+        }}>
+          {/* Stat insignia */}
+          <div style={{ background: '#0A0A12', padding: '1.5rem 1.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+            <InsigniaStatic size={52} />
+            <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.06em', textTransform: 'uppercase', textAlign: 'center' }}>SILABOS</p>
+          </div>
+          <div style={{ background: '#0A0A12', padding: '1.5rem 1.25rem', textAlign: 'center' }}>
+            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '26px', color: '#A855F7', marginBottom: '4px' }}>A1–C2</p>
+            <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Todos los niveles</p>
+          </div>
+          <div style={{ background: '#0A0A12', padding: '1.5rem 1.25rem', textAlign: 'center' }}>
+            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '26px', color: '#00C8FF', marginBottom: '4px' }}>5</p>
+            <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Apps disponibles</p>
+          </div>
+          <div style={{ background: '#0A0A12', padding: '1.5rem 1.25rem', textAlign: 'center' }}>
+            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '26px', color: '#FACC15', marginBottom: '4px' }}>100%</p>
+            <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.06em', textTransform: 'uppercase' }}>Online</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Para quién ── */}
+      <section style={{ padding: '4rem 1.5rem 0' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+          <p style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: '1.5rem' }}>Para quién</p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1px', background: 'rgba(255,255,255,0.06)' }}>
+
+            {/* Estudiantes */}
+            <div style={{ background: 'rgba(255,45,166,0.05)', padding: '2.5rem 2rem', borderTop: '2px solid #FF2DA6' }}>
+              <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(255,45,166,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', marginBottom: '1.25rem' }}>🎓</div>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', color: '#fff', marginBottom: '0.75rem' }}>Estudiantes</p>
+              <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.55)', lineHeight: '1.7', marginBottom: '1.25rem' }}>
+                Practica español de forma interactiva con apps diseñadas para que aprendas a comunicarte de verdad, no a memorizar reglas. Desde A1 hasta C2.
+              </p>
+              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                {['Expresión oral', 'Comprensión', 'Apps lúdicas', 'A1–C2'].map((p, i) => (
+                  <span key={i} style={{ fontSize: '11px', padding: '4px 10px', borderRadius: '2px', border: '0.5px solid rgba(255,45,166,0.4)', color: '#FF2DA6' }}>{p}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Entidades */}
+            <div style={{ background: 'rgba(0,200,255,0.05)', padding: '2.5rem 2rem', borderTop: '2px solid #00C8FF' }}>
+              <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(0,200,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', marginBottom: '1.25rem' }}>🏛️</div>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: '22px', color: '#fff', marginBottom: '0.75rem' }}>Entidades educativas</p>
+              <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.55)', lineHeight: '1.7', marginBottom: '1.25rem' }}>
+                Integramos IA y enfoque comunicativo para crear experiencias de aprendizaje escalables. Trabajamos las 4 destrezas — EO, EE, CL y CA — de forma estructurada por niveles.
+              </p>
+              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                {['Enfoque comunicativo', 'EO · EE · CL · CA', 'IA pedagógica', 'Por niveles'].map((p, i) => (
+                  <span key={i} style={{ fontSize: '11px', padding: '4px 10px', borderRadius: '2px', border: '0.5px solid rgba(0,200,255,0.4)', color: '#00C8FF' }}>{p}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── API Badge ── */}
+      <section style={{ padding: '2rem 1.5rem 0' }}>
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+          <div style={{
+            background: 'rgba(168,85,247,0.07)',
+            border: '0.5px solid rgba(168,85,247,0.3)',
+            borderRadius: '4px',
+            padding: '1.25rem 1.5rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1rem',
+          }}>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#A855F7', flexShrink: 0, boxShadow: '0 0 8px #A855F7' }}/>
+            <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', lineHeight: '1.55', margin: 0 }}>
+              <span style={{ color: '#A855F7', fontWeight: '500' }}>API ELE en desarrollo</span> — Estamos construyendo una API para la integración de contenidos de español por niveles en plataformas educativas. Si tu institución quiere saber más,{' '}
+              <Link to="/contacto" style={{ color: '#A855F7', textDecoration: 'underline', textUnderlineOffset: '3px' }}>escríbenos</Link>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA final ── */}
+      <section style={{ padding: '5rem 1.5rem' }}>
+        <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
+          <p style={{ fontSize: '11px', fontWeight: '500', letterSpacing: '0.16em', textTransform: 'uppercase', color: '#A855F7', marginBottom: '1.25rem' }}>¿Empezamos?</p>
+          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(28px, 4vw, 42px)', color: '#fff', lineHeight: '1.15', marginBottom: '1.25rem' }}>
+            Tu próxima clase de español<br/>
+            <em style={{
+              fontStyle: 'italic',
+              background: 'linear-gradient(135deg, #FF2DA6, #A855F7, #00C8FF)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>te está esperando</em>
+          </h2>
+          <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.5)', lineHeight: '1.7', marginBottom: '2.5rem' }}>
+            Reserva una sesión de prueba gratuita y descubre cómo aprender español puede ser eficaz, moderno y genuinamente tuyo.
+          </p>
+          <Link to="/contacto" style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: '13px',
+            fontWeight: '500',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+            color: '#fff',
+            background: 'linear-gradient(135deg, #FF2DA6, #A855F7)',
+            padding: '14px 36px',
+            borderRadius: '2px',
+            textDecoration: 'none',
+            display: 'inline-block',
+          }}>Contactar ahora</Link>
+        </div>
+      </section>
+    </div>
+  );
+}
