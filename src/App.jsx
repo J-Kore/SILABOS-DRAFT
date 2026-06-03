@@ -174,14 +174,14 @@ function InsigniaAnimada({ size = 44 }) {
       { id: "ia-saiph", ox: 55, oy: -50 },
       { id: "ia-rigel", ox: -55, oy: -40 },
     ];
-    const LINES = ["ia-l1","ia-l2","ia-l3","ia-l4","ia-l5","ia-l6","ia-l7","ia-l8"];
-    const FLASHES = ["ia-fl1","ia-fl2","ia-fl3","ia-fl4","ia-fl5","ia-fl6","ia-fl7"];
+    const LINES = ["ia-l1", "ia-l2", "ia-l3", "ia-l4", "ia-l5", "ia-l6", "ia-l7", "ia-l8"];
+    const FLASHES = ["ia-fl1", "ia-fl2", "ia-fl3", "ia-fl4", "ia-fl5", "ia-fl6", "ia-fl7"];
     const STAR_DUR = 900, STAR_DELAY = 200;
     const LINE_START = STARS.length * STAR_DELAY + STAR_DUR + 200;
     const LINE_DUR = 380, LINE_DELAY = 120;
 
-    function ease(t) { return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2; }
-    function easeOut(t) { return 1 - Math.pow(1-t,3); }
+    function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+    function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
     function animate({ duration, delay = 0, onProgress, onDone }) {
       const start = performance.now() + delay;
       function frame(now) {
@@ -204,7 +204,7 @@ function InsigniaAnimada({ size = 44 }) {
         duration: 550,
         onProgress(t) {
           el.setAttribute("r", easeOut(t) * 26);
-          el.setAttribute("opacity", t < 0.15 ? t/0.15 : 1-(t-0.15)/0.85);
+          el.setAttribute("opacity", t < 0.15 ? t / 0.15 : 1 - (t - 0.15) / 0.85);
         },
         onDone() { el.setAttribute("opacity", 0); }
       });
@@ -222,10 +222,10 @@ function InsigniaAnimada({ size = 44 }) {
         duration: STAR_DUR, delay: i * STAR_DELAY,
         onProgress(t) {
           const et = ease(t);
-          const bx = (1-et)*(1-et)*s.ox + 2*(1-et)*et*(cx-finalX) + et*et*0;
-          const by = (1-et)*(1-et)*s.oy + 2*(1-et)*et*(cy-finalY) + et*et*0;
+          const bx = (1 - et) * (1 - et) * s.ox + 2 * (1 - et) * et * (cx - finalX) + et * et * 0;
+          const by = (1 - et) * (1 - et) * s.oy + 2 * (1 - et) * et * (cy - finalY) + et * et * 0;
           el.setAttribute("opacity", Math.min(1, t * 3));
-          el.setAttribute("transform", `translate(${bx},${by}) scale(${0.05 + 0.95*et})`);
+          el.setAttribute("transform", `translate(${bx},${by}) scale(${0.05 + 0.95 * et})`);
         },
         onDone() {
           el.removeAttribute("transform");
@@ -303,7 +303,7 @@ function InsigniaAnimada({ size = 44 }) {
         <circle cx="100" cy="100" r="10" fill="none" stroke="#0A0A12" strokeWidth="0.8" />
         <text x="100" y="104" textAnchor="middle" fontFamily="Georgia,serif" fontSize="11" fontWeight="700" fill="#0A0A12">S</text>
       </g>
-      {["ia-fl1","ia-fl2","ia-fl3","ia-fl4","ia-fl5","ia-fl6","ia-fl7"].map((id, i) => {
+      {["ia-fl1", "ia-fl2", "ia-fl3", "ia-fl4", "ia-fl5", "ia-fl6", "ia-fl7"].map((id, i) => {
         const cx = [24, 88, 34, 56, 78, 20, 100][i];
         const cy = [14, 26, 60, 58, 52, 108, 100][i];
         return <circle key={id} id={id} cx={cx} cy={cy} r="1" fill="url(#ia-flash)" opacity="0" />;
@@ -494,7 +494,7 @@ export default function SilabosLanding() {
           background: "none", border: "none", cursor: "pointer", color: "#fff",
           display: "flex", flexDirection: "column", gap: "5px", padding: "4px",
         }}>
-          {[0,1,2].map(i => <div key={i} style={{ width: "22px", height: "1.5px", background: menuOpen ? S.fuxia : "rgba(255,255,255,0.6)" }} />)}
+          {[0, 1, 2].map(i => <div key={i} style={{ width: "22px", height: "1.5px", background: menuOpen ? S.fuxia : "rgba(255,255,255,0.6)" }} />)}
         </button>
       </nav>
 
@@ -986,7 +986,7 @@ export default function SilabosLanding() {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 {[
-                  { icon: "✉️", label: "email@silabos.es", href: "mailto:email@silabos.es" },
+                  { icon: "✉️", label: "info@silabos.es", href: "mailto:info@silabos.es" },
                   { icon: "🔗", label: "LinkedIn", href: "#" },
                 ].map((c, i) => (
                   <a key={i} href={c.href} style={{
