@@ -67,7 +67,7 @@ const APPS = [
 const CLASES = [
   {
     tipo: "Individual",
-    emoji: "👤",
+    icon: "individual",
     duracion: "45 min",
     descripcion: "Sesión personalizada 100% adaptada a tu nivel, objetivos y ritmo.",
     features: ["Plan de aprendizaje a medida", "Feedback inmediato", "Grabación disponible", "Material personalizado"],
@@ -76,7 +76,7 @@ const CLASES = [
   },
   {
     tipo: "Grupo pequeño",
-    emoji: "👥",
+    icon: "grupo",
     duracion: "45 min · 2–4 personas",
     descripcion: "Aprende con otros estudiantes de nivel similar. Más conversación, más dinámica.",
     features: ["2 a 4 estudiantes", "Nivel homogéneo", "Práctica colaborativa", "Precio reducido"],
@@ -576,6 +576,166 @@ function useReveal() {
   }, []);
 }
 
+// ─── ICONOS DE APPS ───────────────────────────────────────────────────────────
+// Familia line-art mixta: contorno blanco + detalle de acento en el color de la
+// app. id 1–5 según el array APPS. size en px. El color de acento se pasa para
+// no acoplar el SVG a un hex fijo.
+function AppIcon({ id, size = 28, color = "#fff" }) {
+  const W = "rgba(255,255,255,0.85)";  // contorno principal
+  const W2 = "rgba(255,255,255,0.55)"; // detalle secundario
+  const common = { width: size, height: size, viewBox: "0 0 32 32", fill: "none" };
+
+  switch (id) {
+    case 1: // Conjuanjugator — documento + pluma (escritura/conjugación)
+      return (
+        <svg {...common}>
+          <path d="M7 25 L7 9 a2 2 0 0 1 2-2 l10 0 a2 2 0 0 1 2 2 l0 8" stroke={W} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M7 25 a2 2 0 0 0 2 2 l8 0" stroke={W} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1="11" y1="13" x2="17" y2="13" stroke={W2} strokeWidth="1.4" strokeLinecap="round" />
+          <line x1="11" y1="17" x2="15" y2="17" stroke={W2} strokeWidth="1.4" strokeLinecap="round" />
+          <path d="M24 16 l-7 7 -3.2 0.8 0.8 -3.2 7 -7 a1.6 1.6 0 0 1 2.4 2.6 z" fill={color} fillOpacity="0.18" stroke={color} strokeWidth="1.6" strokeLinejoin="round" />
+        </svg>
+      );
+    case 2: // Convozjugator — dos bocadillos + onda de voz (conversación)
+      return (
+        <svg {...common}>
+          <path d="M5 8 a2 2 0 0 1 2 -2 l11 0 a2 2 0 0 1 2 2 l0 7 a2 2 0 0 1 -2 2 l-7 0 l-4 3 l0 -3 a2 2 0 0 1 -2 -2 z" fill={color} fillOpacity="0.16" stroke={W} strokeWidth="1.6" strokeLinejoin="round" />
+          <path d="M9 11 q1.5 -2 3 0 q1.5 2 3 0 q1.5 -2 3 0" stroke={color} strokeWidth="1.6" fill="none" strokeLinecap="round" />
+          <path d="M19 19 l8 0 a2 2 0 0 1 2 2 l0 4 a2 2 0 0 1 -2 2 l-1 0 l0 2 l-3 -2 l-4 0 a2 2 0 0 1 -2 -2 l0 -4 a2 2 0 0 1 2 -2 z" fill="rgba(255,255,255,0.06)" stroke={W} strokeWidth="1.6" strokeLinejoin="round" />
+          <circle cx="21.5" cy="23.5" r="1" fill={color} />
+          <circle cx="24.5" cy="23.5" r="1" fill={color} />
+        </svg>
+      );
+    case 3: // Ponlo — bocadillo de voz que dirige + pieza L que encaja en su hueco
+      return (
+        <svg {...common}>
+          <path d="M3 4 l9 0 a1.5 1.5 0 0 1 1.5 1.5 l0 4 a1.5 1.5 0 0 1 -1.5 1.5 l-5 0 l-3 2.5 l0 -2.5 a1.5 1.5 0 0 1 -1.5 -1.5 l0 -4 a1.5 1.5 0 0 1 1.5 -1.5 z" fill={color} fillOpacity="0.18" stroke={color} strokeWidth="1.4" strokeLinejoin="round" />
+          <path d="M5 7.5 q1 -1.2 2 0 q1 1.2 2 0 q1 -1.2 2 0" stroke={color} strokeWidth="1.3" fill="none" strokeLinecap="round" />
+          <path d="M19 4 l4 0 l0 4 l3 0 l0 4 l-7 0 z" fill={color} fillOpacity="0.28" stroke={color} strokeWidth="1.4" strokeLinejoin="round" />
+          <line x1="22" y1="14" x2="22" y2="17" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeDasharray="1.5 2" />
+          <path d="M15 29 l0 -9 l7 0 l0 -3 l7 0 l0 12 z" fill="rgba(255,255,255,0.03)" stroke={W} strokeWidth="1.6" strokeLinejoin="round" />
+        </svg>
+      );
+    case 4: // ComuniTabu — bocadillo con palabra tachada (describe sin decir)
+      return (
+        <svg {...common}>
+          <path d="M5 8 a2.5 2.5 0 0 1 2.5 -2.5 l17 0 a2.5 2.5 0 0 1 2.5 2.5 l0 10 a2.5 2.5 0 0 1 -2.5 2.5 l-11 0 l-6 4.5 l0 -4.5 a2.5 2.5 0 0 1 -2.5 -2.5 z" fill={color} fillOpacity="0.08" stroke={W} strokeWidth="1.6" strokeLinejoin="round" />
+          <line x1="10" y1="11" x2="22" y2="11" stroke={W2} strokeWidth="1.6" strokeLinecap="round" />
+          <line x1="10" y1="15" x2="18" y2="15" stroke={W2} strokeWidth="1.6" strokeLinecap="round" />
+          <line x1="8" y1="13" x2="24" y2="13" stroke={color} strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      );
+    case 5: // Operación ELE — mapa con ruta y estrella de misión (aventura narrativa)
+      return (
+        <svg {...common}>
+          <path d="M6 9 l7 -2 l6 2 l7 -2 v16 l-7 2 l-6 -2 l-7 2 z" fill={color} fillOpacity="0.10" stroke={W} strokeWidth="1.6" strokeLinejoin="round" />
+          <line x1="13" y1="7" x2="13" y2="23" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" />
+          <line x1="19" y1="9" x2="19" y2="25" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" />
+          <path d="M10 20 q3 -4 6 -2 q3 2 6 -3" stroke={color} strokeWidth="1.6" fill="none" strokeLinecap="round" strokeDasharray="1.5 2.5" />
+          <path d="M22 13 l0.9 1.9 l2.1 0.3 l-1.5 1.5 l0.4 2.1 l-1.9 -1 l-1.9 1 l0.4 -2.1 l-1.5 -1.5 l2.1 -0.3 z" fill={color} stroke={color} strokeWidth="0.8" strokeLinejoin="round" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
+// ─── ICONOS UI ────────────────────────────────────────────────────────────────
+// Audiencias, modalidades de clase y contacto. Misma familia que AppIcon:
+// contorno blanco + detalle de acento. name identifica el icono; color es el acento.
+function UiIcon({ name, size = 24, color = "#fff" }) {
+  const W = "rgba(255,255,255,0.85)";
+  const W2 = "rgba(255,255,255,0.55)";
+  const common = { width: size, height: size, viewBox: "0 0 32 32", fill: "none" };
+
+  switch (name) {
+    case "estudiantes": // birrete de graduación
+      return (
+        <svg {...common}>
+          <path d="M4 13 l12 -5 l12 5 l-12 5 z" fill={color} fillOpacity="0.2" stroke={W} strokeWidth="1.6" strokeLinejoin="round" />
+          <path d="M9 15 l0 5 a7 3.5 0 0 0 14 0 l0 -5" stroke={W} strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1="28" y1="13" x2="28" y2="19" stroke={color} strokeWidth="1.6" strokeLinecap="round" />
+        </svg>
+      );
+    case "docentes": // figura frente a pizarra/pantalla (enseñanza)
+      return (
+        <svg {...common}>
+          <rect x="14" y="5" width="14" height="10" rx="1.5" fill={color} fillOpacity="0.18" stroke={W} strokeWidth="1.6" strokeLinejoin="round" />
+          <line x1="17" y1="9" x2="25" y2="9" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
+          <line x1="17" y1="12" x2="22" y2="12" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
+          <circle cx="8" cy="11" r="3.5" fill="rgba(255,255,255,0.06)" stroke={W} strokeWidth="1.6" />
+          <path d="M3 26 a5 5 0 0 1 10 0" stroke={W} strokeWidth="1.6" fill="none" strokeLinecap="round" />
+          <line x1="13" y1="16" x2="13" y2="22" stroke={W2} strokeWidth="1.4" strokeLinecap="round" />
+        </svg>
+      );
+    case "entidades": // edificio institucional con columnas
+      return (
+        <svg {...common}>
+          <path d="M16 4 l11 6 l-22 0 z" fill={color} fillOpacity="0.18" stroke={W} strokeWidth="1.6" strokeLinejoin="round" />
+          <line x1="8" y1="12" x2="8" y2="23" stroke={W} strokeWidth="1.6" strokeLinecap="round" />
+          <line x1="13" y1="12" x2="13" y2="23" stroke={W} strokeWidth="1.6" strokeLinecap="round" />
+          <line x1="19" y1="12" x2="19" y2="23" stroke={W} strokeWidth="1.6" strokeLinecap="round" />
+          <line x1="24" y1="12" x2="24" y2="23" stroke={W} strokeWidth="1.6" strokeLinecap="round" />
+          <line x1="5" y1="26" x2="27" y2="26" stroke={color} strokeWidth="1.6" strokeLinecap="round" />
+        </svg>
+      );
+    case "individual": // una persona
+      return (
+        <svg {...common}>
+          <circle cx="16" cy="11" r="5" fill={color} fillOpacity="0.2" stroke={W} strokeWidth="1.6" />
+          <path d="M6 27 a10 8 0 0 1 20 0" stroke={W} strokeWidth="1.6" fill="none" strokeLinecap="round" />
+        </svg>
+      );
+    case "grupo": // dos personas
+      return (
+        <svg {...common}>
+          <circle cx="11" cy="11" r="4" fill="rgba(255,255,255,0.06)" stroke={W} strokeWidth="1.6" />
+          <circle cx="21" cy="12" r="3.5" fill={color} fillOpacity="0.2" stroke={color} strokeWidth="1.6" />
+          <path d="M3 26 a8 6 0 0 1 16 0" stroke={W} strokeWidth="1.6" fill="none" strokeLinecap="round" />
+          <path d="M19 22 a7 5 0 0 1 10 4" stroke={color} strokeWidth="1.6" fill="none" strokeLinecap="round" />
+        </svg>
+      );
+    case "email": // sobre con solapa de color
+      return (
+        <svg {...common}>
+          <rect x="4" y="8" width="24" height="16" rx="2.5" fill="rgba(255,255,255,0.04)" stroke={W} strokeWidth="1.6" />
+          <path d="M5 10 l11 8 l11 -8" stroke={color} strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "linkedin": // logo oficial, monocromo blanco
+      return (
+        <svg {...common}>
+          <rect x="4" y="4" width="24" height="24" rx="4" fill="none" stroke={W} strokeWidth="1.6" />
+          <rect x="8.5" y="13" width="3" height="9" fill={W} />
+          <rect x="8.3" y="8.5" width="3.4" height="3.4" rx="1.7" fill={W} />
+          <path d="M15 22 l0 -9 l3 0 l0 1.4 a3.2 3.2 0 0 1 5.5 2.2 l0 5.4 l-3 0 l0 -4.8 a1.5 1.5 0 0 0 -3 0 l0 4.8 z" fill={W} />
+        </svg>
+      );
+    case "enviado": // check de confirmación
+      return (
+        <svg {...common}>
+          <circle cx="16" cy="16" r="11" fill={color} fillOpacity="0.08" stroke={W} strokeWidth="1.6" />
+          <path d="M11 16 l3.5 3.5 l6.5 -7" stroke={color} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      );
+    case "avatar": // retrato line-art de Juanjo, inspirado en su dibujo
+      return (
+        <svg width={size} height={size} viewBox="0 0 64 64" fill="none">
+          <path d="M20 10 q-7 4 -7 18 q0 16 8 25 q5 5 11 5 q6 0 11 -5 q8 -9 8 -25 q0 -14 -8 -18 q-12 -5 -23 0 z" fill={color} fillOpacity="0.12" stroke={W} strokeWidth="2" strokeLinejoin="round" />
+          <path d="M19 24 q3 -10 13 -10 q11 0 13 9 q-4 -3 -10 -2.5 q-2 4 -5 4.5 q-6 1 -11 -1 z" fill={W} />
+          <path d="M12 26 q-3 1 -2 6 q1 3 3 2" stroke={W} strokeWidth="2" fill="none" strokeLinecap="round" />
+          <path d="M52 26 q3 1 2 6 q-1 3 -3 2" stroke={W} strokeWidth="2" fill="none" strokeLinecap="round" />
+          <path d="M38 28 q3 -1.5 6 0" stroke={W} strokeWidth="2" fill="none" strokeLinecap="round" />
+          <circle cx="41" cy="31" r="1.6" fill={color} />
+          <path d="M34 30 q1 8 -2 11" stroke={W2} strokeWidth="1.6" fill="none" strokeLinecap="round" />
+          <path d="M24 46 q8 6 16 0" stroke={color} strokeWidth="2.2" fill="none" strokeLinecap="round" />
+        </svg>
+      );
+    default:
+      return null;
+  }
+}
+
 // ─── COMPONENTE PRINCIPAL ─────────────────────────────────────────────────────
 export default function SilabosLanding() {
   const [activeSection, setActiveSection] = useState("inicio");
@@ -901,23 +1061,25 @@ export default function SilabosLanding() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1px", background: "rgba(255,255,255,0.06)" }}>
             {[
               {
-                emoji: "🎓", titulo: "Estudiantes", color: S.fuxia,
+                icon: "estudiantes", titulo: "Estudiantes", color: S.fuxia,
                 desc: "Practica español de forma interactiva con apps diseñadas para que aprendas a comunicarte de verdad. Desde A1 hasta C2.",
                 tags: ["Expresión oral", "Comprensión", "Apps lúdicas", "A1–C2"],
               },
               {
-                emoji: "🤝", titulo: "Docentes de ELE", color: S.morado,
+                icon: "docentes", titulo: "Docentes de ELE", color: S.morado,
                 desc: "Integra IA en tu práctica docente. Recursos, actividades y herramientas para el aula con enfoque comunicativo.",
                 tags: ["Materiales IA", "Formación", "Metodología", "MCER"],
               },
               {
-                emoji: "🏛️", titulo: "Entidades educativas", color: S.azul,
+                icon: "entidades", titulo: "Entidades educativas", color: S.azul,
                 desc: "Soluciones escalables con IA pedagógica para centros, academias y plataformas que quieren integrar el español por niveles.",
                 tags: ["EO · EE · CL · CA", "API", "Por niveles", "Institucional"],
               },
             ].map((card, i) => (
               <div key={i} className="glow-card" data-reveal style={{ "--reveal-i": i, "--ac": card.color, "--acglow": hexA(card.color, 0.45), background: `${card.color}08`, padding: "2.5rem 2rem", borderTop: `2px solid ${card.color}` }}>
-                <div style={{ width: "44px", height: "44px", borderRadius: "50%", background: `${card.color}22`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "20px", marginBottom: "1.25rem" }}>{card.emoji}</div>
+                <div style={{ width: "44px", height: "44px", borderRadius: "50%", background: `${card.color}22`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.25rem" }}>
+                  <UiIcon name={card.icon} size={24} color={card.color} />
+                </div>
                 <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "22px", color: "#fff", marginBottom: "0.75rem" }}>{card.titulo}</p>
                 <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.55)", lineHeight: "1.7", marginBottom: "1.25rem" }}>{card.desc}</p>
                 <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
@@ -990,8 +1152,8 @@ export default function SilabosLanding() {
                     padding: "3px 8px", borderRadius: "2px",
                   }}>Disponible</div>
                 )}
-                <div style={{ width: "40px", height: "40px", borderRadius: "8px", background: `${app.color}22`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px", marginBottom: "1rem" }}>
-                  {["📚", "🎙️", "🧩", "🃏", "🗺️"][app.id - 1]}
+                <div style={{ width: "40px", height: "40px", borderRadius: "8px", background: `${app.color}22`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
+                  <AppIcon id={app.id} size={24} color={app.color} />
                 </div>
                 <p style={{ fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: app.color, marginBottom: "6px" }}>{app.categoria}</p>
                 <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "20px", color: "#fff", marginBottom: "10px" }}>{app.nombre}</p>
@@ -1156,7 +1318,9 @@ export default function SilabosLanding() {
                     color: "#fff", padding: "4px 14px", borderRadius: "20px", fontWeight: 500,
                   }}>Más popular</div>
                 )}
-                <div style={{ fontSize: "32px", marginBottom: "1rem" }}>{c.emoji}</div>
+                <div style={{ width: "48px", height: "48px", borderRadius: "12px", background: `${c.color}1A`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
+                  <UiIcon name={c.icon} size={28} color={c.color} />
+                </div>
                 <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "24px", color: "#fff", marginBottom: "6px" }}>{c.tipo}</p>
                 <p style={{ fontSize: "12px", color: c.color, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: "1rem" }}>{c.duracion}</p>
                 <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.55)", lineHeight: "1.7", marginBottom: "1.5rem" }}>{c.descripcion}</p>
@@ -1239,16 +1403,17 @@ export default function SilabosLanding() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "4rem" }}>
             {/* Perfil */}
             <div>
-              {/* Foto placeholder elegante */}
+              {/* Avatar line-art de Juanjo */}
               <div style={{
                 width: "140px", height: "140px",
                 background: `linear-gradient(135deg, ${S.fuxia}22, ${S.morado}22)`,
                 border: `1px solid ${S.morado}44`,
                 borderRadius: "50%",
                 display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "40px",
                 marginBottom: "1.5rem",
-              }}>🧑‍🏫</div>
+              }}>
+                <UiIcon name="avatar" size={92} color={S.morado} />
+              </div>
               <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "24px", color: "#fff", marginBottom: "4px" }}>Juanjo</p>
               <p style={{ fontSize: "13px", color: S.morado, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "1rem" }}>Pedagogo · ELE · Tenerife</p>
               <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.5)", lineHeight: "1.75", maxWidth: "320px", marginBottom: "2rem" }}>
@@ -1256,8 +1421,8 @@ export default function SilabosLanding() {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 {[
-                  { icon: "✉️", label: "info@silabos.es", href: "mailto:info@silabos.es" },
-                  { icon: "🔗", label: "LinkedIn", href: "#" },
+                  { icon: "email", label: "info@silabos.es", href: "mailto:info@silabos.es" },
+                  { icon: "linkedin", label: "LinkedIn", href: "#" },
                 ].map((c, i) => (
                   <a key={i} href={c.href} style={{
                     display: "flex", alignItems: "center", gap: "10px",
@@ -1269,7 +1434,7 @@ export default function SilabosLanding() {
                     onMouseEnter={e => e.currentTarget.style.color = "#fff"}
                     onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}
                   >
-                    <span>{c.icon}</span> {c.label}
+                    <UiIcon name={c.icon} size={18} color={S.morado} /> {c.label}
                   </a>
                 ))}
               </div>
@@ -1282,7 +1447,9 @@ export default function SilabosLanding() {
                   background: `${S.verde}10`, border: `1px solid ${S.verde}33`,
                   borderRadius: "6px", padding: "3rem 2rem", textAlign: "center",
                 }}>
-                  <div style={{ fontSize: "40px", marginBottom: "1rem" }}>✅</div>
+                  <div style={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}>
+                    <UiIcon name="enviado" size={48} color={S.verde} />
+                  </div>
                   <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "22px", color: "#fff", marginBottom: "0.75rem" }}>¡Mensaje enviado!</p>
                   <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.5)" }}>Te respondo en menos de 24 horas.</p>
                 </div>
