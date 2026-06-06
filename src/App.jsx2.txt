@@ -413,7 +413,7 @@ function StarfieldCanvas() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       W = window.innerWidth;
       H = window.innerHeight;
-      field = H * 3;
+      field = H * 2.2;
       canvas.width = W * dpr;
       canvas.height = H * dpr;
       canvas.style.width = W + "px";
@@ -423,11 +423,8 @@ function StarfieldCanvas() {
     }
 
     function build() {
-      // Densidad proporcional al área del campo, normalizada a una pantalla de
-      // referencia, para que el cielo se vea igual de poblado en cualquier viewport.
-      const screens = field / H;
-      const perScreen = (DENSITY * W) / 1280;
-      const count = Math.max(80, Math.min(420, Math.round(perScreen * screens)));
+      const n = Math.round((DENSITY * (W * field)) / (1280 * 1080 * 2.2));
+      const count = Math.max(60, Math.min(360, n || DENSITY));
       stars = [];
       for (let i = 0; i < count; i++) {
         const depth = Math.random();
@@ -470,14 +467,10 @@ function StarfieldCanvas() {
       ctx.clearRect(0, 0, W, H);
 
       for (const s of stars) {
+        let y = s.y - scrollY * (0.1 + s.depth * 0.35);
         const x = s.x + (reduce ? 0 : Math.sin(t * 0.05 * DRIFT + s.tw) * s.depth * 12 * DRIFT);
-        // Parallax con wrap infinito: la estrella se desplaza con el scroll según
-        // su profundidad y se reposiciona módulo-campo, de modo que SIEMPRE hay
-        // cielo en pantalla por mucho que se baje.
-        const par = scrollY * (0.1 + s.depth * 0.35);
-        let y = ((s.y - par) % field + field) % field;
-        // El campo es más alto que el viewport; solo pintamos la franja visible.
-        if (y > H + 6) continue;
+        y = ((y % field) + field) % field;
+        if (y > H + 4) continue;
         const twinkle = reduce ? 1 : (1 - TWINKLE) + TWINKLE * (0.5 + 0.5 * Math.sin(t * s.twSpeed + s.tw));
         const alpha = Math.max(0, Math.min(1, s.base * twinkle));
         ctx.globalAlpha = alpha;
@@ -680,37 +673,7 @@ export default function SilabosLanding() {
           [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
           .app-card:hover, .glow-card:hover, .glow-row:hover { transform: none; }
           html { scroll-behavior: auto; }
-          .breathe-glow, .logo-si, .logo-lab, .logo-os { animation: none !important; }
         }
-
-        /* ── Glow que respira: resplandor de texto que cicla entre los neón ── */
-        @keyframes breatheGlow {
-          0%   { text-shadow: 0 0 16px rgba(255,45,166,0.45), 0 0 32px rgba(255,45,166,0.18); }
-          33%  { text-shadow: 0 0 16px rgba(168,85,247,0.45), 0 0 32px rgba(168,85,247,0.18); }
-          66%  { text-shadow: 0 0 16px rgba(0,200,255,0.45), 0 0 32px rgba(0,200,255,0.18); }
-          100% { text-shadow: 0 0 16px rgba(255,45,166,0.45), 0 0 32px rgba(255,45,166,0.18); }
-        }
-        .breathe-glow { animation: breatheGlow 45s ease-in-out infinite; }
-
-        /* Glow para botones (box-shadow en vez de text-shadow) */
-        @keyframes breatheBox {
-          0%   { box-shadow: 0 0 22px -4px rgba(255,45,166,0.5); }
-          33%  { box-shadow: 0 0 22px -4px rgba(168,85,247,0.5); }
-          66%  { box-shadow: 0 0 22px -4px rgba(0,200,255,0.5); }
-          100% { box-shadow: 0 0 22px -4px rgba(255,45,166,0.5); }
-        }
-        .breathe-box { animation: breatheBox 45s ease-in-out infinite; }
-
-        /* Logo SILABOS: cada tramo deriva entre colores, desfasado, ciclo lento */
-        @keyframes logoShift {
-          0%   { color: #FF2DA6; }
-          33%  { color: #A855F7; }
-          66%  { color: #00C8FF; }
-          100% { color: #FF2DA6; }
-        }
-        .logo-si  { animation: logoShift 48s ease-in-out infinite; animation-delay: 0s; }
-        .logo-lab { animation: logoShift 48s ease-in-out infinite; animation-delay: -16s; }
-        .logo-os  { animation: logoShift 48s ease-in-out infinite; animation-delay: -32s; }
       `}</style>
 
       {/* ── MODAL ── */}
@@ -727,9 +690,9 @@ export default function SilabosLanding() {
         <button onClick={() => scrollTo("inicio")} style={{ background: "none", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", padding: 0 }}>
           <InsigniaAnimada size={40} />
           <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "20px", letterSpacing: "0.14em" }}>
-            <span className="logo-si" style={{ color: S.fuxia }}>SI</span>
-            <span className="logo-lab" style={{ color: S.morado }}>LAB</span>
-            <span className="logo-os" style={{ color: S.azul }}>OS</span>
+            <span style={{ color: S.fuxia }}>SI</span>
+            <span style={{ color: S.morado }}>LAB</span>
+            <span style={{ color: S.azul }}>OS</span>
           </span>
         </button>
 
@@ -747,7 +710,7 @@ export default function SilabosLanding() {
             </li>
           ))}
           <li>
-            <button onClick={() => scrollTo("contacto")} className="btn-primary breathe-box" style={{
+            <button onClick={() => scrollTo("contacto")} className="btn-primary" style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 500,
               letterSpacing: "0.07em", textTransform: "uppercase",
               color: "#fff", background: `linear-gradient(135deg, ${S.fuxia}, ${S.morado})`,
@@ -795,7 +758,7 @@ export default function SilabosLanding() {
         <div style={{ maxWidth: "1100px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "3rem", alignItems: "center", position: "relative", zIndex: 1 }}>
           {/* Copy */}
           <div>
-            <div data-reveal className="breathe-box" style={{ "--reveal-i": 0,
+            <div data-reveal style={{ "--reveal-i": 0,
               display: "inline-flex", alignItems: "center", gap: "6px",
               background: `${S.fuxia}1A`, border: `0.5px solid ${S.fuxia}66`,
               borderRadius: "20px", padding: "5px 14px", fontSize: "11px",
@@ -805,7 +768,7 @@ export default function SilabosLanding() {
               <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: S.fuxia }} />
               Pedagogía · IA · ELE
             </div>
-            <h1 data-reveal className="breathe-glow" style={{ "--reveal-i": 1,
+            <h1 data-reveal style={{ "--reveal-i": 1,
               fontFamily: "'Playfair Display', serif", fontWeight: 700,
               fontSize: "clamp(36px, 5vw, 58px)", lineHeight: "1.08",
               color: "#fff", marginBottom: "1.25rem",
@@ -821,7 +784,7 @@ export default function SilabosLanding() {
               Apps interactivas, clases personalizadas y recursos con IA para estudiantes y docentes que quieren llevar el español más lejos.
             </p>
             <div data-reveal style={{ "--reveal-i": 3, display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}>
-              <button onClick={() => scrollTo("ia-ele")} className="btn-primary breathe-box" style={{
+              <button onClick={() => scrollTo("ia-ele")} className="btn-primary" style={{
                 fontFamily: "'DM Sans', sans-serif", fontSize: "13px", fontWeight: 500,
                 letterSpacing: "0.07em", textTransform: "uppercase", color: "#fff",
                 background: `linear-gradient(135deg, ${S.fuxia}, ${S.morado})`,
@@ -876,7 +839,7 @@ export default function SilabosLanding() {
           gap: "1px", background: "rgba(255,255,255,0.05)",
           border: "0.5px solid rgba(255,255,255,0.05)", borderRadius: "4px", overflow: "hidden",
         }}>
-          <div style={{ background: "rgba(10,10,18,0.5)", padding: "1.5rem 1.25rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+          <div style={{ background: S.bg, padding: "1.5rem 1.25rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
             <InsigniaStatic size={48} />
             <p style={{ fontSize: "10px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.06em", textTransform: "uppercase" }}>SILABOS</p>
           </div>
@@ -886,7 +849,7 @@ export default function SilabosLanding() {
             { val: "3 apps", sub: "Disponibles ya", color: S.azul },
             { val: "100%", sub: "Online", color: S.amarillo },
           ].map((s, i) => (
-            <div key={i} style={{ background: "rgba(10,10,18,0.5)", padding: "1.5rem 1.25rem", textAlign: "center" }}>
+            <div key={i} style={{ background: S.bg, padding: "1.5rem 1.25rem", textAlign: "center" }}>
               <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "26px", color: s.color, marginBottom: "4px" }}>{s.val}</p>
               <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.06em", textTransform: "uppercase" }}>{s.sub}</p>
             </div>
@@ -934,7 +897,7 @@ export default function SilabosLanding() {
       {/* ═══════════════════════════════════════════════════════════════════════
           SECCIÓN 2 — IA & ELE
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="ia-ele" style={{ padding: "5rem 1.5rem", background: "rgba(13,13,26,0.55)", position: "relative", overflow: "hidden" }}>
+      <section id="ia-ele" style={{ padding: "5rem 1.5rem", background: "#0D0D1A", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: "-80px", right: "-60px", width: "350px", height: "350px", background: `radial-gradient(circle, ${S.morado}18 0%, transparent 70%)`, pointerEvents: "none" }} />
         <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           {/* Header */}
@@ -1019,7 +982,7 @@ export default function SilabosLanding() {
                 { num: "02", titulo: "Práctica significativa", desc: "Cada actividad tiene un propósito comunicativo. Se aprende haciendo, no memorizando reglas.", color: S.morado },
                 { num: "03", titulo: "IA como medio", desc: "La inteligencia artificial amplifica la metodología, no la reemplaza. El foco es siempre el aprendizaje.", color: S.azul },
               ].map((b, i) => (
-                <div key={i} style={{ background: "rgba(10,10,18,0.5)", padding: "2rem 1.75rem" }}>
+                <div key={i} style={{ background: S.bg, padding: "2rem 1.75rem" }}>
                   <p style={{ fontFamily: "monospace", fontSize: "11px", color: b.color, marginBottom: "1rem", opacity: 0.7 }}>{b.num}</p>
                   <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "18px", color: "#fff", marginBottom: "0.75rem" }}>{b.titulo}</p>
                   <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", lineHeight: "1.7" }}>{b.desc}</p>
@@ -1033,7 +996,7 @@ export default function SilabosLanding() {
       {/* ═══════════════════════════════════════════════════════════════════════
           SECCIÓN 3 — API
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="api" style={{ padding: "5rem 1.5rem", background: "rgba(10,10,18,0.4)", position: "relative", overflow: "hidden" }}>
+      <section id="api" style={{ padding: "5rem 1.5rem", background: S.bg, position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", bottom: "-60px", left: "-60px", width: "300px", height: "300px", background: `radial-gradient(circle, ${S.verde}0F 0%, transparent 70%)`, pointerEvents: "none" }} />
         <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "4rem", alignItems: "start" }}>
@@ -1114,7 +1077,7 @@ export default function SilabosLanding() {
       {/* ═══════════════════════════════════════════════════════════════════════
           SECCIÓN 4 — CLASES
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="clases" style={{ padding: "5rem 1.5rem", background: "rgba(13,13,26,0.55)", position: "relative", overflow: "hidden" }}>
+      <section id="clases" style={{ padding: "5rem 1.5rem", background: "#0D0D1A", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: "-80px", right: "-80px", width: "400px", height: "400px", background: `radial-gradient(circle, ${S.fuxia}12 0%, transparent 70%)`, pointerEvents: "none" }} />
         <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div style={{ marginBottom: "3rem" }}>
@@ -1216,7 +1179,7 @@ export default function SilabosLanding() {
       {/* ═══════════════════════════════════════════════════════════════════════
           SECCIÓN 5 — CONTACTO
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="contacto" style={{ padding: "5rem 1.5rem 6rem", background: "rgba(10,10,18,0.4)", position: "relative", overflow: "hidden" }}>
+      <section id="contacto" style={{ padding: "5rem 1.5rem 6rem", background: S.bg, position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", bottom: "0", left: "50%", transform: "translateX(-50%)", width: "600px", height: "300px", background: `radial-gradient(ellipse, ${S.morado}12 0%, transparent 70%)`, pointerEvents: "none" }} />
         <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
           <div style={{ marginBottom: "3rem" }}>
