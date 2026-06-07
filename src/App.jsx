@@ -722,7 +722,7 @@ function UiIcon({ name, size = 24, color = "#fff" }) {
       return (
         <svg width={size} height={size} viewBox="0 0 64 64" fill="none">
           <path d="M20 10 q-7 4 -7 18 q0 16 8 25 q5 5 11 5 q6 0 11 -5 q8 -9 8 -25 q0 -14 -8 -18 q-12 -5 -23 0 z" fill={color} fillOpacity="0.12" stroke={W} strokeWidth="2" strokeLinejoin="round" />
-          <path d="M19 24 q3 -10 13 -10 q11 0 13 9 q-4 -3 -10 -2.5 q-2 4 -5 4.5 q-6 1 -11 -1 z" fill={W} />
+          <path d="M18 24 q1 -4 3 -6 q-1 3 1 4 q2 -4 5 -5 q-1 3 1 4 q3 -4 6 -4 q-1 2 1 3 q3 -3 6 -2 q3 1 4 6 q-4 -3 -10 -2.5 q-2 4 -5 4.5 q-7 1 -12 -1.5 z" fill={W} />
           <path d="M12 26 q-3 1 -2 6 q1 3 3 2" stroke={W} strokeWidth="2" fill="none" strokeLinecap="round" />
           <path d="M52 26 q3 1 2 6 q-1 3 -3 2" stroke={W} strokeWidth="2" fill="none" strokeLinecap="round" />
           <path d="M38 28 q3 -1.5 6 0" stroke={W} strokeWidth="2" fill="none" strokeLinecap="round" />
