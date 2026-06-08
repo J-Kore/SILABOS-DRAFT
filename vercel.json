@@ -1,12 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/convozjugator",
-      "destination": "https://convozjugator.vercel.app/"
-    },
-    {
-      "source": "/convozjugator/:path*",
-      "destination": "https://convozjugator.vercel.app/:path*"
+      "source": "/convozjugator/:path((?:.*)?)",
+      "destination": "https://convozjugator.vercel.app/:path"
     }
   ]
 }
