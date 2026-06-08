@@ -29,7 +29,7 @@ const APPS = [
     descripcion: "Entrena la pronunciación y el ritmo del español con actividades de conversación guiada.",
     tags: ["Expresión Oral", "Conjugación", "Verbos", "Tiempos"],
     color: "#A855F7",
-    url: "https://convozjugator.netlify.app/",
+    url: "https://convozjugator.vercel.app/",
     estado: "disponible",
   },
   {
@@ -744,6 +744,14 @@ export default function SilabosLanding() {
   const [formState, setFormState] = useState({ nombre: "", email: "", asunto: "", mensaje: "" });
   const [formSent, setFormSent] = useState(false);
   const [hoveredApp, setHoveredApp] = useState(null);
+  // Abre una app a pantalla completa en una pestaña nueva.
+  // El tráfico/clic se registrará aquí cuando instales analítica (ver nota abajo).
+  function abrirApp(app) {
+    if (!app.url) return; // apps en desarrollo (url null) no abren
+    // TODO: cuando instales Vercel Analytics o Google Analytics, registrar el clic aquí.
+    // Ejemplo con Vercel Analytics: window.va?.('event', { name: 'abrir_app', data: { app: app.nombre } });
+    window.open(app.url, "_blank", "noopener,noreferrer");
+  }
 
   useReveal();
 
@@ -1002,7 +1010,7 @@ export default function SilabosLanding() {
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {APPS.filter(a => a.estado === "disponible").map(app => (
-                <button key={app.id} className="app-card glow-row" onClick={() => setSelectedApp(app)}
+                <button key={app.id} className="app-card glow-row" onClick={() => abrirApp(app)}
                   style={{
                     "--ac": app.color, "--acglow": hexA(app.color, 0.5),
                     background: hoveredApp === app.id ? "rgba(255,255,255,0.07)" : "rgba(255,255,255,0.03)",
@@ -1134,7 +1142,7 @@ export default function SilabosLanding() {
                   cursor: app.estado === "disponible" ? "pointer" : "default",
                   position: "relative",
                 }}
-                onClick={() => app.estado === "disponible" && setSelectedApp(app)}
+                onClick={() => app.estado === "disponible" && abrirApp(app)}
               >
                 {app.estado === "desarrollo" && (
                   <div style={{
