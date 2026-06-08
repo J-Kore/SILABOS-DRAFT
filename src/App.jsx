@@ -19,7 +19,7 @@ const APPS = [
     descripcion: "Practica la conjugación verbal de forma interactiva. Tiempos, modos y personas en contexto real.",
     tags: ["Expresión Escrita", "Conjugación", "Verbos", "Tiempos"],
     color: "#FF2DA6",
-    url: "https://conjuanjugator2.netlify.app/",
+    url: "https://conjuanjugator-react.vercel.app",
     estado: "disponible",
   },
   {
