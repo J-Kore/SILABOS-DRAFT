@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { Analytics } from "@vercel/analytics/react";
+import { track } from "@vercel/analytics";
 
 // ─── PALETA NEÓN ──────────────────────────────────────────────────────────────
 // BG:      #0A0A12
@@ -315,70 +317,6 @@ function InsigniaAnimada({ size = 44 }) {
         <line x1="33" y1="14" x2="37" y2="14" stroke="#FF2DA6" strokeWidth="0.8" strokeLinecap="round" />
       </g>
     </svg>
-  );
-}
-
-// ─── MODAL IFRAME ──────────────────────────────────────────────────────────────
-function AppModal({ app, onClose }) {
-  if (!app) return null;
-  return (
-    <div
-      onClick={onClose}
-      style={{
-        position: "fixed", inset: 0,
-        background: "rgba(10,10,18,0.92)",
-        zIndex: 1000,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        backdropFilter: "blur(8px)",
-      }}
-    >
-      <div
-        onClick={e => e.stopPropagation()}
-        style={{
-          background: "#0D0D1A",
-          border: `1px solid ${app.color}44`,
-          borderRadius: "8px",
-          width: "min(92vw, 960px)",
-          height: "min(88vh, 700px)",
-          display: "flex", flexDirection: "column",
-          overflow: "hidden",
-          boxShadow: `0 0 60px ${app.color}22`,
-        }}
-      >
-        {/* Barra superior */}
-        <div style={{
-          background: "#0A0A12",
-          borderBottom: `1px solid ${app.color}33`,
-          padding: "10px 16px",
-          display: "flex", alignItems: "center", gap: "12px",
-        }}>
-          {/* Dots */}
-          <div style={{ display: "flex", gap: "6px" }}>
-            <div onClick={onClose} style={{ width: 12, height: 12, borderRadius: "50%", background: "#FF5F57", cursor: "pointer" }} />
-            <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#FFBD2E" }} />
-            <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#28C840" }} />
-          </div>
-          <div style={{
-            flex: 1, background: "rgba(255,255,255,0.05)", borderRadius: "4px",
-            padding: "4px 12px", fontSize: "12px", color: "rgba(255,255,255,0.35)",
-            fontFamily: "monospace",
-          }}>
-            {app.url}
-          </div>
-          <a href={app.url} target="_blank" rel="noopener noreferrer" style={{
-            fontSize: "11px", color: app.color, textDecoration: "none",
-            border: `0.5px solid ${app.color}66`, padding: "4px 10px", borderRadius: "3px",
-          }}>↗ Abrir</a>
-        </div>
-        {/* Iframe */}
-        <iframe
-          src={app.url}
-          title={app.nombre}
-          style={{ flex: 1, border: "none", width: "100%", background: "#fff" }}
-          allow="clipboard-write"
-        />
-      </div>
-    </div>
   );
 }
 
@@ -739,17 +677,16 @@ function UiIcon({ name, size = 24, color = "#fff" }) {
 // ─── COMPONENTE PRINCIPAL ─────────────────────────────────────────────────────
 export default function SilabosLanding() {
   const [activeSection, setActiveSection] = useState("inicio");
-  const [selectedApp, setSelectedApp] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [formState, setFormState] = useState({ nombre: "", email: "", asunto: "", mensaje: "" });
   const [formSent, setFormSent] = useState(false);
+  const [formSending, setFormSending] = useState(false);
+  const [formError, setFormError] = useState("");
   const [hoveredApp, setHoveredApp] = useState(null);
-  // Abre una app a pantalla completa en una pestaña nueva.
-  // El tráfico/clic se registrará aquí cuando instales analítica (ver nota abajo).
+  // Abre una app a pantalla completa en una pestaña nueva y registra el clic.
   function abrirApp(app) {
     if (!app.url) return; // apps en desarrollo (url null) no abren
-    // TODO: cuando instales Vercel Analytics o Google Analytics, registrar el clic aquí.
-    // Ejemplo con Vercel Analytics: window.va?.('event', { name: 'abrir_app', data: { app: app.nombre } });
+    track("abrir_app", { app: app.nombre });
     window.open(app.url, "_blank", "noopener,noreferrer");
   }
 
@@ -775,9 +712,41 @@ export default function SilabosLanding() {
     setMenuOpen(false);
   }
 
-  function handleForm(e) {
+  // Endpoint de Formspree. Reemplaza xxxxxxxx por el ID de tu formulario
+  // (lo encuentras en formspree.io → tu form → "Integration" / "Form endpoint").
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/mdavgvwy";
+
+  async function handleForm(e) {
     e.preventDefault();
-    setFormSent(true);
+    setFormError("");
+    setFormSending(true);
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          nombre: formState.nombre,
+          email: formState.email,
+          asunto: formState.asunto,
+          mensaje: formState.mensaje,
+          _subject: `SILABOS · ${formState.asunto || "Nuevo mensaje"}`,
+        }),
+      });
+      if (res.ok) {
+        setFormSent(true);
+        setFormState({ nombre: "", email: "", asunto: "", mensaje: "" });
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setFormError(
+          data?.errors?.[0]?.message ||
+          "No se pudo enviar el mensaje. Inténtalo de nuevo o escríbeme directamente por email."
+        );
+      }
+    } catch {
+      setFormError("Problema de conexión. Revisa tu internet e inténtalo de nuevo.");
+    } finally {
+      setFormSending(false);
+    }
   }
 
   const S = {
@@ -801,6 +770,7 @@ export default function SilabosLanding() {
   return (
     <div style={{ background: S.bg, minHeight: "100vh", fontFamily: "'DM Sans', sans-serif", color: "#fff", position: "relative" }}>
       <StarfieldCanvas />
+      <Analytics />
       <div style={{ position: "relative", zIndex: 1 }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
@@ -880,9 +850,6 @@ export default function SilabosLanding() {
         .logo-lab { animation: logoShift 48s ease-in-out infinite; animation-delay: -16s; }
         .logo-os  { animation: logoShift 48s ease-in-out infinite; animation-delay: -32s; }
       `}</style>
-
-      {/* ── MODAL ── */}
-      {selectedApp && <AppModal app={selectedApp} onClose={() => setSelectedApp(null)} />}
 
       {/* ── NAVBAR ── */}
       <nav style={{
@@ -1509,12 +1476,17 @@ export default function SilabosLanding() {
                       onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.1)"}
                     />
                   </div>
-                  <button type="submit" className="btn-primary" style={{
+                  {formError && (
+                    <p style={{ fontSize: "13px", color: S.fuxia, margin: "0" }}>{formError}</p>
+                  )}
+                  <button type="submit" disabled={formSending} className="btn-primary" style={{
                     fontFamily: "'DM Sans', sans-serif", fontSize: "13px", fontWeight: 500,
                     letterSpacing: "0.07em", textTransform: "uppercase", color: "#fff",
                     background: `linear-gradient(135deg, ${S.fuxia}, ${S.morado})`,
-                    padding: "13px", borderRadius: "2px", border: "none", cursor: "pointer",
-                  }}>Enviar mensaje</button>
+                    padding: "13px", borderRadius: "2px", border: "none",
+                    cursor: formSending ? "default" : "pointer",
+                    opacity: formSending ? 0.6 : 1,
+                  }}>{formSending ? "Enviando…" : "Enviar mensaje"}</button>
                 </form>
               )}
             </div>
