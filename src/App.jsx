@@ -1487,7 +1487,7 @@ export default function SilabosLanding() {
               <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 {[
                   { icon: "email", label: "info@silabos.es", href: "mailto:info@silabos.es" },
-                  { icon: "linkedin", label: "LinkedIn", href: "#" },
+                  { icon: "linkedin", label: "LinkedIn", href: "https://es.linkedin.com/in/juan-jos%C3%A9-ojeda-santana-65274637" },
                 ].map((c, i) => (
                   <a key={i} href={c.href} style={{
                     display: "flex", alignItems: "center", gap: "10px",
