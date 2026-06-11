@@ -50,7 +50,7 @@ const APPS = [
     categoria: "Expresión Oral",
     descripcion: "Aprende colocaciones léxicas y el uso del imperativo en situaciones comunicativas auténticas.",
     tags: ["Colocaciones", "Imperativo", "Léxico"],
-    color: "#0A0A12",
+    color: "#FF2DA6",
     url: "https://oyerobot.vercel.app/",
     estado: "disponible",
   },
