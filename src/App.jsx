@@ -50,7 +50,7 @@ const APPS = [
     categoria: "Expresión Oral",
     descripcion: "Aprende colocaciones léxicas y el uso del imperativo en situaciones comunicativas auténticas.",
     tags: ["Colocaciones", "Imperativo", "Léxico"],
-    color: "#FF2DA6",
+    color: "#A855F7",
     url: "https://oyerobot.vercel.app/",
     estado: "disponible",
   },
@@ -574,11 +574,11 @@ function AppIcon({ id, size = 28, color = "#fff" }) {
     case 4: // OyeRobot
       return (
         <svg {...common}>
-          <path d="M7 25 L7 9 a2 2 0 0 1 2-2 l10 0 a2 2 0 0 1 2 2 l0 8" stroke={W} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-          <path d="M7 25 a2 2 0 0 0 2 2 l8 0" stroke={W} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-          <line x1="11" y1="13" x2="17" y2="13" stroke={W2} strokeWidth="1.4" strokeLinecap="round" />
-          <line x1="11" y1="17" x2="15" y2="17" stroke={W2} strokeWidth="1.4" strokeLinecap="round" />
-          <path d="M24 16 l-7 7 -3.2 0.8 0.8 -3.2 7 -7 a1.6 1.6 0 0 1 2.4 2.6 z" fill={color} fillOpacity="0.18" stroke={color} strokeWidth="1.6" strokeLinejoin="round" />
+          <path d="M3 4 l9 0 a1.5 1.5 0 0 1 1.5 1.5 l0 4 a1.5 1.5 0 0 1 -1.5 1.5 l-5 0 l-3 2.5 l0 -2.5 a1.5 1.5 0 0 1 -1.5 -1.5 l0 -4 a1.5 1.5 0 0 1 1.5 -1.5 z" fill={color} fillOpacity="0.18" stroke={color} strokeWidth="1.4" strokeLinejoin="round" />
+          <path d="M5 7.5 q1 -1.2 2 0 q1 1.2 2 0 q1 -1.2 2 0" stroke={color} strokeWidth="1.3" fill="none" strokeLinecap="round" />
+          <path d="M19 4 l4 0 l0 4 l3 0 l0 4 l-7 0 z" fill={color} fillOpacity="0.28" stroke={color} strokeWidth="1.4" strokeLinejoin="round" />
+          <line x1="22" y1="14" x2="22" y2="17" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeDasharray="1.5 2" />
+          <path d="M15 29 l0 -9 l7 0 l0 -3 l7 0 l0 12 z" fill="rgba(255,255,255,0.03)" stroke={W} strokeWidth="1.6" strokeLinejoin="round" />
         </svg>
       );
 
