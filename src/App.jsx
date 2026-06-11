@@ -570,7 +570,20 @@ function AppIcon({ id, size = 28, color = "#fff" }) {
           <path d="M15 29 l0 -9 l7 0 l0 -3 l7 0 l0 12 z" fill="rgba(255,255,255,0.03)" stroke={W} strokeWidth="1.6" strokeLinejoin="round" />
         </svg>
       );
-    case 4: // ComuniTabu — bocadillo con palabra tachada (describe sin decir)
+
+    case 4: // OyeRobot
+      return (
+        <svg {...common}>
+          <path d="M7 25 L7 9 a2 2 0 0 1 2-2 l10 0 a2 2 0 0 1 2 2 l0 8" stroke={W} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M7 25 a2 2 0 0 0 2 2 l8 0" stroke={W} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+          <line x1="11" y1="13" x2="17" y2="13" stroke={W2} strokeWidth="1.4" strokeLinecap="round" />
+          <line x1="11" y1="17" x2="15" y2="17" stroke={W2} strokeWidth="1.4" strokeLinecap="round" />
+          <path d="M24 16 l-7 7 -3.2 0.8 0.8 -3.2 7 -7 a1.6 1.6 0 0 1 2.4 2.6 z" fill={color} fillOpacity="0.18" stroke={color} strokeWidth="1.6" strokeLinejoin="round" />
+        </svg>
+      );
+
+      
+    case 5: // ComuniTabu — bocadillo con palabra tachada (describe sin decir)
       return (
         <svg {...common}>
           <path d="M5 8 a2.5 2.5 0 0 1 2.5 -2.5 l17 0 a2.5 2.5 0 0 1 2.5 2.5 l0 10 a2.5 2.5 0 0 1 -2.5 2.5 l-11 0 l-6 4.5 l0 -4.5 a2.5 2.5 0 0 1 -2.5 -2.5 z" fill={color} fillOpacity="0.08" stroke={W} strokeWidth="1.6" strokeLinejoin="round" />
@@ -579,7 +592,7 @@ function AppIcon({ id, size = 28, color = "#fff" }) {
           <line x1="8" y1="13" x2="24" y2="13" stroke={color} strokeWidth="2" strokeLinecap="round" />
         </svg>
       );
-    case 5: // Operación ELE — mapa con ruta y estrella de misión (aventura narrativa)
+    case 6: // Operación ELE — mapa con ruta y estrella de misión (aventura narrativa)
       return (
         <svg {...common}>
           <path d="M6 9 l7 -2 l6 2 l7 -2 v16 l-7 2 l-6 -2 l-7 2 z" fill={color} fillOpacity="0.10" stroke={W} strokeWidth="1.6" strokeLinejoin="round" />
