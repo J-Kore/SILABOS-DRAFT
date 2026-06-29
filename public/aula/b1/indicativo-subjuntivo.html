@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indicativo o subjuntivo B1 — Silabos</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0A0A12;
+    --bg2: #0F0F1A;
+    --bg3: #141425;
+    --border: rgba(168,85,247,0.18);
+    --border2: rgba(0,200,255,0.22);
+    --pink: #FF2DA6;
+    --purple: #A855F7;
+    --cyan: #00C8FF;
+    --green: #39FF14;
+    --yellow: #FFE600;
+    --orange: #FF6B00;
+    --text: #E8E8F0;
+    --muted: #FFFFFF;
+    --card: rgba(255,255,255,0.03);
+    --card-border: rgba(168,85,247,0.15);
+  }
+  html { background: var(--bg); }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* HEADER */
+  .header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .brand-logo { width: 36px; height: 40px; }
+  .brand-name { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+  .brand-name span:nth-child(1) { color: var(--pink); }
+  .brand-name span:nth-child(2) { color: var(--purple); }
+  .brand-name span:nth-child(3) { color: var(--cyan); }
+  .brand-url { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
+  .header-badge { font-size: 11px; font-weight: 600; color: var(--green); border: 1px solid rgba(57,255,20,0.3); border-radius: 20px; padding: 4px 12px; letter-spacing: 0.05em; background: rgba(57,255,20,0.06); }
+
+  /* HERO */
+  .hero { padding: 3rem 2rem 2rem; max-width: 900px; margin: 0 auto; }
+  .hero-eyebrow { font-size: 11px; font-weight: 600; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .hero-title { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; line-height: 1.1; margin-bottom: 0.75rem; }
+  .hero-title .hl-pink { color: var(--pink); }
+  .hero-title .hl-cyan { color: var(--cyan); }
+  .hero-title .hl-green { color: var(--green); }
+  .hero-sub { font-size: 15px; color: var(--muted); max-width: 540px; line-height: 1.6; }
+
+  /* NAV TABS */
+  .nav-wrap { background: var(--bg2); border-bottom: 1px solid var(--border); position: sticky; top: 64px; z-index: 90; }
+  .nav-tabs { display: flex; gap: 0; max-width: 900px; margin: 0 auto; padding: 0 2rem; overflow-x: auto; }
+  .nav-tab { font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 500; padding: 16px 20px; border: none; background: none; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; white-space: nowrap; }
+  .nav-tab:hover { color: var(--text); }
+  .nav-tab.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+
+  /* CONTENT */
+  .content { max-width: 900px; margin: 0 auto; padding: 2rem; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* SECTION TITLE */
+  .sec-label { font-size: 11px; font-weight: 600; color: var(--purple); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .sec-title { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 600; color: var(--text); margin-bottom: 1.5rem; }
+
+  /* CARDS */
+  .card { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+  .card-pink { border-color: rgba(255,45,166,0.25); }
+  .card-cyan { border-color: rgba(0,200,255,0.25); }
+  .card-green { border-color: rgba(57,255,20,0.2); }
+  .card-yellow { border-color: rgba(255,230,0,0.2); }
+  .card-orange { border-color: rgba(255,107,0,0.2); }
+
+  /* TIPO BADGES */
+  .tipo { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 4px; padding: 3px 10px; margin-bottom: 0.6rem; }
+  .tipo-igual { background: rgba(0,200,255,0.12); color: var(--cyan); border: 1px solid rgba(0,200,255,0.3); }
+  .tipo-super { background: rgba(57,255,20,0.1); color: var(--green); border: 1px solid rgba(57,255,20,0.25); }
+  .tipo-infer { background: rgba(255,107,0,0.1); color: var(--orange); border: 1px solid rgba(255,107,0,0.25); }
+  .tipo-relat { background: rgba(255,230,0,0.1); color: var(--yellow); border: 1px solid rgba(255,230,0,0.25); }
+  .tipo-abs { background: rgba(168,85,247,0.12); color: var(--purple); border: 1px solid rgba(168,85,247,0.3); }
+  .tipo-ind { background: rgba(0,200,255,0.12); color: var(--cyan); border: 1px solid rgba(0,200,255,0.3); }
+  .tipo-des { background: rgba(255,45,166,0.1); color: var(--pink); border: 1px solid rgba(255,45,166,0.3); }
+  .tipo-pos { background: rgba(168,85,247,0.12); color: var(--purple); border: 1px solid rgba(168,85,247,0.3); }
+  .tipo-val { background: rgba(57,255,20,0.1); color: var(--green); border: 1px solid rgba(57,255,20,0.25); }
+
+  /* FORMULA */
+  .formula { background: rgba(168,85,247,0.08); border-left: 3px solid var(--purple); border-radius: 0 8px 8px 0; padding: 0.6rem 1rem; font-family: monospace; font-size: 13px; color: var(--purple); margin: 0.5rem 0; }
+  .example { font-size: 14px; color: var(--muted); margin-top: 0.5rem; line-height: 1.7; font-style: italic; }
+  .example strong { color: var(--cyan); font-style: normal; font-weight: 500; }
+
+  /* NOTE */
+  .note { background: rgba(255,230,0,0.06); border-left: 3px solid var(--yellow); border-radius: 0 8px 8px 0; padding: 0.6rem 1rem; font-size: 13px; color: #ccc; margin: 0.75rem 0; line-height: 1.6; }
+  .note strong { color: var(--yellow); }
+
+  /* GRID */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  @media (max-width: 600px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+
+  /* READING TEXT */
+  .read-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem 1.75rem; margin-bottom: 1.5rem; }
+  .read-title { font-family: 'Space Grotesk', sans-serif; font-size: 19px; font-weight: 700; color: var(--text); margin-bottom: 1rem; line-height: 1.3; }
+  .read-body { font-size: 15px; line-height: 1.85; color: #d6d6e2; }
+  .read-body p { margin-bottom: 1.1rem; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 1.25rem; font-size: 12px; color: var(--muted); }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .hl-ind { background: rgba(0,200,255,0.16); color: #aef0ff; border-radius: 3px; padding: 0 3px; font-weight: 600; }
+  .hl-des { background: rgba(255,45,166,0.18); color: #ffb8e0; border-radius: 3px; padding: 0 3px; font-weight: 600; }
+  .hl-pos { background: rgba(168,85,247,0.2); color: #ddb8ff; border-radius: 3px; padding: 0 3px; font-weight: 600; }
+  .hl-val { background: rgba(57,255,20,0.16); color: #b3ffa0; border-radius: 3px; padding: 0 3px; font-weight: 600; }
+  .hl-rit { background: rgba(255,230,0,0.18); color: #fff3a0; border-radius: 3px; padding: 0 3px; font-weight: 600; }
+
+  /* IRREGULAR TABLE */
+  .irreg-table { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; font-size: 14px; }
+  .irreg-row { display: flex; gap: 8px; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .irreg-from { color: var(--muted); }
+  .arrow { color: var(--purple); }
+  .irreg-to { color: var(--green); font-weight: 600; }
+
+  /* PREFIXES */
+  .prefix-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  @media (max-width: 600px) { .prefix-grid { grid-template-columns: repeat(2,1fr); } }
+  .prefix-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 0.85rem; text-align: center; cursor: pointer; transition: all 0.15s; }
+  .prefix-card:hover, .prefix-card.sel { background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.4); }
+  .prefix-main { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; }
+  .prefix-hint { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+  .prefix-detail { display: none; background: rgba(168,85,247,0.07); border: 1px solid rgba(168,85,247,0.2); border-radius: 12px; padding: 1.25rem; margin-top: 0.75rem; }
+  .prefix-detail.visible { display: block; }
+  .detail-head { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; margin-bottom: 0.4rem; }
+  .detail-meaning { font-size: 13px; color: #bbb; margin-bottom: 0.75rem; line-height: 1.5; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 0.75rem; }
+  .chip { font-size: 13px; padding: 3px 10px; border-radius: 20px; background: rgba(168,85,247,0.12); color: var(--purple); border: 1px solid rgba(168,85,247,0.25); }
+  .detail-ex { font-size: 13px; font-style: italic; color: var(--muted); line-height: 1.7; }
+  .detail-ex strong { color: var(--cyan); font-style: normal; }
+  .reg-badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 4px; margin-bottom: 0.5rem; font-weight: 600; letter-spacing: 0.04em; }
+  .reg-col { background: rgba(57,255,20,0.08); color: var(--green); border: 1px solid rgba(57,255,20,0.2); }
+  .reg-for { background: rgba(0,200,255,0.08); color: var(--cyan); border: 1px solid rgba(0,200,255,0.2); }
+  .reg-mix { background: rgba(255,230,0,0.08); color: var(--yellow); border: 1px solid rgba(255,230,0,0.2); }
+
+  /* QUIZ */
+  .quiz-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+  .q-num { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .q-text { font-size: 15px; color: var(--text); margin-bottom: 1rem; line-height: 1.6; }
+  .q-text em { color: var(--pink); font-style: normal; font-weight: 600; }
+  .options { display: grid; gap: 6px; }
+  .opt-btn { text-align: left; font-size: 14px; padding: 10px 14px; border: 1px solid rgba(168,85,247,0.2); border-radius: 8px; cursor: pointer; background: rgba(255,255,255,0.02); color: var(--text); transition: all 0.12s; font-family: 'Inter', sans-serif; }
+  .opt-btn:hover:not(:disabled) { background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.4); }
+  .opt-btn.correct { background: rgba(57,255,20,0.1); border-color: rgba(57,255,20,0.5); color: var(--green); }
+  .opt-btn.wrong { background: rgba(255,45,166,0.1); border-color: rgba(255,45,166,0.4); color: var(--pink); }
+  .opt-btn.missed { background: rgba(57,255,20,0.07); border-color: rgba(57,255,20,0.3); color: var(--green); opacity: 0.7; }
+  .feedback { font-size: 13px; margin-top: 0.75rem; padding: 8px 12px; border-radius: 8px; display: none; line-height: 1.5; }
+  .feedback.ok { display: block; background: rgba(57,255,20,0.08); color: #a0f080; border: 1px solid rgba(57,255,20,0.2); }
+  .feedback.fail { display: block; background: rgba(255,45,166,0.08); color: #f0a0c0; border: 1px solid rgba(255,45,166,0.2); }
+  .score-box { background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.3); border-radius: 12px; padding: 2rem; text-align: center; display: none; margin-top: 1rem; }
+  .score-box.visible { display: block; }
+  .score-num { font-family: 'Space Grotesk', sans-serif; font-size: 42px; font-weight: 700; background: linear-gradient(135deg, var(--pink), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .score-label { font-size: 14px; color: var(--muted); margin-top: 4px; }
+  .reset-btn { margin-top: 1rem; font-size: 14px; padding: 8px 24px; border: 1px solid rgba(168,85,247,0.4); border-radius: 8px; background: rgba(168,85,247,0.1); color: var(--purple); cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.12s; }
+  .reset-btn:hover { background: rgba(168,85,247,0.2); }
+
+  /* FILL */
+  .fill-wrap { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 0.5rem; font-size: 14px; color: var(--muted); }
+  .fill-input { border: 1px solid rgba(168,85,247,0.3); border-radius: 8px; padding: 7px 12px; font-size: 14px; font-family: 'Inter', sans-serif; background: rgba(255,255,255,0.04); color: var(--text); width: 190px; outline: none; transition: border-color 0.12s; }
+  .fill-input:focus { border-color: var(--purple); }
+  .fill-input.correct { border-color: var(--green); background: rgba(57,255,20,0.08); color: var(--green); }
+  .fill-input.wrong { border-color: var(--pink); background: rgba(255,45,166,0.08); color: var(--pink); }
+  .check-btn { font-size: 13px; padding: 7px 16px; border: 1px solid rgba(168,85,247,0.35); border-radius: 8px; background: rgba(168,85,247,0.1); color: var(--purple); cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.12s; }
+  .check-btn:hover { background: rgba(168,85,247,0.2); }
+
+  /* DRAG & DROP */
+  .drag-instructions { font-size: 13px; color: var(--muted); margin-bottom: 1rem; }
+  .drag-bank { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; min-height: 44px; padding: 10px; background: rgba(255,255,255,0.02); border: 1px dashed rgba(168,85,247,0.25); border-radius: 10px; }
+  .drag-item { font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 20px; cursor: grab; background: rgba(168,85,247,0.12); border: 1px solid rgba(168,85,247,0.3); color: var(--purple); user-select: none; transition: all 0.12s; font-family: 'Space Grotesk', sans-serif; }
+  .drag-item:hover { background: rgba(168,85,247,0.22); }
+  .drag-item.dragging { opacity: 0.5; }
+  .drag-sentence { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; font-size: 14px; color: var(--text); background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 0.85rem 1.1rem; margin-bottom: 0.75rem; line-height: 2; }
+  .drag-zone { display: inline-flex; align-items: center; justify-content: center; min-width: 120px; height: 34px; border: 2px dashed rgba(168,85,247,0.35); border-radius: 20px; padding: 0 12px; font-size: 13px; color: var(--muted); background: rgba(168,85,247,0.05); transition: all 0.12s; }
+  .drag-zone.over { border-color: var(--cyan); background: rgba(0,200,255,0.08); }
+  .drag-zone.filled { border-style: solid; border-color: rgba(57,255,20,0.4); background: rgba(57,255,20,0.08); color: var(--green); font-weight: 600; }
+  .drag-zone.wrong-fill { border-color: var(--pink); background: rgba(255,45,166,0.08); color: var(--pink); }
+  .drag-zone.correct-fill { border-color: var(--green); background: rgba(57,255,20,0.1); color: var(--green); }
+  .drag-check-btn { font-size: 14px; padding: 10px 28px; border: 1px solid rgba(57,255,20,0.4); border-radius: 8px; background: rgba(57,255,20,0.08); color: var(--green); cursor: pointer; font-family: 'Inter', sans-serif; margin-top: 0.75rem; transition: all 0.12s; }
+  .drag-check-btn:hover { background: rgba(57,255,20,0.15); }
+  .drag-reset-btn { font-size: 13px; padding: 8px 20px; border: 1px solid rgba(168,85,247,0.3); border-radius: 8px; background: transparent; color: var(--purple); cursor: pointer; font-family: 'Inter', sans-serif; margin-top: 0.75rem; margin-left: 10px; transition: all 0.12s; }
+  .drag-result { font-size: 14px; padding: 10px 16px; border-radius: 8px; margin-top: 0.75rem; display: none; line-height: 1.5; }
+  .drag-result.ok { display: block; background: rgba(57,255,20,0.08); color: #a0f080; border: 1px solid rgba(57,255,20,0.2); }
+  .drag-result.partial { display: block; background: rgba(255,230,0,0.08); color: var(--yellow); border: 1px solid rgba(255,230,0,0.25); }
+  .bins-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 1rem; }
+  @media (max-width: 640px) { .bins-wrap { grid-template-columns: 1fr; } }
+  .drop-bin { min-height: 130px; border: 2px dashed rgba(168,85,247,0.3); border-radius: 12px; padding: 12px; display: flex; flex-wrap: wrap; align-content: flex-start; gap: 8px; transition: all 0.12s; }
+  .drop-bin.over { border-color: var(--cyan); background: rgba(0,200,255,0.06); }
+  .drop-bin-label { width: 100%; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; margin-bottom: 6px; }
+  .drag-item.correct-fill { border-color: var(--green) !important; background: rgba(57,255,20,0.15) !important; color: var(--green) !important; }
+  .drag-item.wrong-fill { border-color: var(--pink) !important; background: rgba(255,45,166,0.15) !important; color: var(--pink) !important; }
+
+  /* FOOTER */
+  .footer { border-top: 1px solid var(--border); padding: 1.5rem 2rem; margin-top: 3rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: gap; }
+  .footer-brand { font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--muted); }
+  .footer-brand span { color: var(--pink); font-weight: 600; }
+  .footer-level { font-size: 11px; font-weight: 600; color: var(--green); border: 1px solid rgba(57,255,20,0.3); border-radius: 4px; padding: 3px 8px; }
+  hr.div { border: none; border-top: 1px solid rgba(168,85,247,0.12); margin: 1.5rem 0; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <a class="brand" href="https://silabos.com" title="Volver a silabos.com">
+    <svg class="brand-logo" viewBox="-8 -18 156 166" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="gb" cx="35%" cy="35%" r="65%"><stop offset="0%" stop-color="#FF2DA6"/><stop offset="100%" stop-color="#A855F7"/></radialGradient>
+        <radialGradient id="gr" cx="35%" cy="50%" r="65%"><stop offset="0%" stop-color="#FFFFFF"/><stop offset="50%" stop-color="#00C8FF"/><stop offset="100%" stop-color="#A855F7"/></radialGradient>
+        <radialGradient id="hb" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#FF2DA6" stop-opacity="0.22"/><stop offset="100%" stop-color="#FF2DA6" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hr" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#00C8FF" stop-opacity="0.22"/><stop offset="100%" stop-color="#00C8FF" stop-opacity="0"/></radialGradient>
+        <radialGradient id="bet-node" cx="40%" cy="35%" r="60%"><stop offset="0%" stop-color="#FF2DA6" stop-opacity="0.9"/><stop offset="60%" stop-color="#A855F7" stop-opacity="0.7"/><stop offset="100%" stop-color="#0A0A12" stop-opacity="0"/></radialGradient>
+        <filter id="gsm" x="-100%" y="-400%" width="300%" height="900%"><feGaussianBlur stdDeviation="1" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="blur-heavy" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="8"/></filter>
+        <filter id="glow-sm" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <circle cx="24" cy="14" r="38" fill="url(#hb)" filter="url(#blur-heavy)"/>
+      <circle cx="100" cy="100" r="38" fill="url(#hr)" filter="url(#blur-heavy)"/>
+      <line x1="24" y1="14" x2="88" y2="26" stroke="#A855F7" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="24" y1="14" x2="34" y2="60" stroke="#A855F7" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="88" y1="26" x2="78" y2="52" stroke="#A855F7" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="34" y1="60" x2="56" y2="58" stroke="#00C8FF" stroke-width="2" stroke-linecap="round" filter="url(#gsm)"/>
+      <line x1="56" y1="58" x2="78" y2="52" stroke="#00C8FF" stroke-width="2" stroke-linecap="round" filter="url(#gsm)"/>
+      <line x1="34" y1="60" x2="20" y2="108" stroke="#A855F7" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="78" y1="52" x2="100" y2="100" stroke="#A855F7" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="20" y1="108" x2="100" y2="100" stroke="#00C8FF" stroke-width="0.8" stroke-dasharray="3,4" stroke-linecap="round"/>
+      <circle cx="88" cy="26" r="7" fill="#A855F7"/>
+      <circle cx="34" cy="60" r="5" fill="#00C8FF"/>
+      <circle cx="56" cy="58" r="5" fill="#00C8FF"/>
+      <circle cx="78" cy="52" r="5" fill="#00C8FF"/>
+      <circle cx="20" cy="108" r="6" fill="#A855F7"/>
+      <circle cx="24" cy="14" r="9" fill="#0A0A12"/>
+      <circle cx="24" cy="14" r="9" fill="url(#bet-node)" filter="url(#glow-sm)"/>
+      <g filter="url(#glow-sm)" opacity="0.75">
+        <circle cx="100" cy="100" r="8" fill="url(#gr)" opacity="0.7"/>
+        <text x="100" y="104" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="700" fill="#0A0A12">S</text>
+      </g>
+      <line x1="24" y1="3" x2="24" y2="6" stroke="#FF2DA6" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+      <line x1="24" y1="22" x2="24" y2="25" stroke="#FF2DA6" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+      <line x1="13" y1="14" x2="16" y2="14" stroke="#FF2DA6" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+      <line x1="32" y1="14" x2="35" y2="14" stroke="#FF2DA6" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+      <line x1="100" y1="89" x2="100" y2="92" stroke="#00C8FF" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+      <line x1="100" y1="108" x2="100" y2="111" stroke="#00C8FF" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+      <line x1="89" y1="100" x2="92" y2="100" stroke="#00C8FF" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+      <line x1="108" y1="100" x2="111" y2="100" stroke="#00C8FF" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
+    </svg>
+    <div>
+      <div class="brand-name"><span>SI</span><span>LA</span><span>BOS</span></div>
+      <div class="brand-url">silabos.com · pedagogía · ia · ele</div>
+    </div>
+  </a>
+  <span class="header-badge">B1 · Gramática</span>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Unidad de gramática</div>
+  <h1 class="hero-title">¿<span class="hl-cyan">Indicativo</span> o<br><span class="hl-pink">subjuntivo</span>?</h1>
+  <p class="hero-sub">Cuándo declaramos, cuándo deseamos y cuándo solo valoramos — teoría, un texto modelo comentado y varios tipos de ejercicios interactivos — nivel B1</p>
+</section>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('teoria',this)">① Teoría</button>
+    <button class="nav-tab" onclick="showTab('texto',this)">② Texto</button>
+    <button class="nav-tab" onclick="showTab('prefijos',this)">③ Matrices</button>
+    <button class="nav-tab" onclick="showTab('test',this)">④ Test</button>
+    <button class="nav-tab" onclick="showTab('fill',this)">⑤ Huecos</button>
+    <button class="nav-tab" onclick="showTab('drag',this)">⑥ Clasifica</button>
+  </div>
+</div>
+
+<main class="content">
+
+<!-- ═══════════ TAB 1: TEORÍA ═══════════ -->
+<div id="tab-teoria" class="tab-panel active">
+  <div class="sec-label">Sección 1</div>
+  <h2 class="sec-title">El principio general: declarar o no declarar</h2>
+
+  <div class="card card-cyan">
+    <span class="tipo tipo-ind">Indicativo</span>
+    <div class="formula">declaramos (afirmamos o suponemos) el contenido de la oración</div>
+    <p class="example"><strong>Está claro que</strong> Marta <strong>tiene</strong> razón. / <strong>Creo que</strong> Pablo <strong>vendrá</strong> mañana. / <strong>Supongo que</strong> ya lo <strong>saben</strong>.</p>
+    <div class="note"><strong>Idea clave:</strong> con indicativo, presentamos el contenido subordinado como una afirmación o una suposición propia: lo declaramos.</div>
+  </div>
+
+  <div class="card card-pink">
+    <span class="tipo tipo-des">Subjuntivo</span>
+    <div class="formula">NO declaramos el contenido: es un deseo, una petición, una posibilidad o una valoración</div>
+    <p class="example"><strong>Quiero que</strong> Marta <strong>tenga</strong> razón. / <strong>Es posible que</strong> Pablo <strong>venga</strong> mañana. / <strong>Me alegra que</strong> ya lo <strong>sepan</strong>.</p>
+    <div class="note"><strong>Atención:</strong> nunca usamos el subjuntivo en una oración independiente para dar una opinión directamente. <em>"Marta tenga razón"</em>, sola y sin matriz, no funciona en español: el subjuntivo siempre depende de otra expresión (la <strong>matriz</strong>) que lo justifica.</div>
+  </div>
+
+  <hr class="div">
+  <h2 class="sec-title">A. Deseos y objetivos: <em>quiero que vengas</em></h2>
+
+  <div class="card card-pink">
+    <span class="tipo tipo-des">Deseo / petición</span>
+    <div class="formula">querer · desear · necesitar · esperar · preferir · tener ganas de · apetecer + que + subjuntivo</div>
+    <p class="example"><strong>Espero que</strong> todo te <strong>vaya</strong> bien. / <strong>Necesito que</strong> me <strong>ayudes</strong> con esto. / <strong>Tengo ganas de que</strong> <strong>llegue</strong> el verano.</p>
+  </div>
+
+  <div class="grid2">
+    <div class="irreg-table">
+      <div class="irreg-row"><span class="irreg-from">Mismo sujeto</span><span class="arrow">→</span><span class="irreg-to">infinitivo</span></div>
+    </div>
+    <div class="irreg-table">
+      <div class="irreg-row"><span class="irreg-from">Sujetos distintos</span><span class="arrow">→</span><span class="irreg-to">que + subjuntivo</span></div>
+    </div>
+  </div>
+  <p class="example" style="margin-top:0.6rem"><strong>Quiero salir</strong> (yo quiero, yo salgo: mismo sujeto). / <strong>Quiero que salgas</strong> (yo quiero, tú sales: sujetos distintos).</p>
+  <div class="note">Con matrices impersonales (<em>es importante, es necesario, es mejor</em>) pasa algo parecido: el infinitivo generaliza y el subjuntivo concreta a alguien. <strong>Es necesario estudiar</strong> más (en general) / <strong>Es necesario que estudies</strong> más (tú, en concreto).</div>
+
+  <hr class="div">
+  <h2 class="sec-title">B. Declarar o cuestionar una información: <em>creo que viene / no creo que venga</em></h2>
+
+  <div class="grid2">
+    <div class="card card-cyan">
+      <span class="tipo tipo-ind">Declaramos (indicativo)</span>
+      <p class="example">sé que · está claro que · me han contado que · supongo que · me parece que · es verdad que · no hay duda de que</p>
+    </div>
+    <div class="card card-pink">
+      <span class="tipo tipo-pos">Cuestionamos (subjuntivo)</span>
+      <p class="example">no creo que · dudo que · es posible que · puede ser que · no es verdad que · es mentira que · no está claro que</p>
+    </div>
+  </div>
+  <p class="example" style="margin-top:0.75rem"><strong>Creo que</strong> Ana <strong>viene</strong> a la fiesta. (lo afirmo) / <strong>No creo que</strong> Ana <strong>venga</strong> a la fiesta. (lo pongo en duda)</p>
+
+  <hr class="div">
+  <h2 class="sec-title">C. Declarar o pedir: <em>dice que viene / dice que venga</em></h2>
+
+  <div class="card card-yellow">
+    <span class="tipo tipo-relat">Doble valor de decir, repetir, insistir en</span>
+    <p class="example" style="margin-bottom:0.6rem"><strong>decir = declarar/informar</strong> → indicativo: <strong>Me ha dicho que viene</strong> a la fiesta (me informa de un hecho).</p>
+    <p class="example"><strong>decir = pedir/ordenar</strong> → subjuntivo: <strong>Me ha dicho que venga</strong> a la fiesta (me transmite una petición, una orden).</p>
+    <div class="note">El verbo es el mismo; lo que cambia el modo es <strong>su función</strong> en ese contexto: ¿informa de algo o pide algo?</div>
+  </div>
+
+  <hr class="div">
+  <h2 class="sec-title">D. Valorar una información ya aceptada: <em>es estupendo que venga</em></h2>
+
+  <div class="card card-green">
+    <span class="tipo tipo-val">Valoración (siempre subjuntivo)</span>
+    <div class="formula">me alegra que · es una pena que · me parece bien/mal que · es normal que · qué raro que · es una sorpresa que + subjuntivo</div>
+    <p class="example"><strong>Me alegra que</strong> por fin te <strong>decidas</strong>. / <strong>Es una pena que</strong> <strong>vivamos</strong> tan lejos. / <strong>Qué raro que</strong> Pedro no <strong>haya llamado</strong> todavía.</p>
+    <div class="note"><strong>Idea clave:</strong> aquí ya no discutimos si algo es verdad o no —se da por aceptado—, solo añadimos un comentario o una reacción personal. Por eso siempre va en subjuntivo, aunque la información en sí no se cuestione.</div>
+  </div>
+
+  <hr class="div">
+  <h2 class="sec-title">Extra: fórmulas con <em>que + subjuntivo</em></h2>
+
+  <div class="card card-orange">
+    <span class="tipo tipo-infer">Deseos rituales</span>
+    <p style="font-size:14px;color:#ccc;line-height:1.7">En situaciones sociales muy concretas usamos <strong>que + presente de subjuntivo</strong> como fórmula fija de buen deseo, sin verbo principal explícito (queda sobreentendido "deseo que...").</p>
+    <p class="example" style="margin-top:0.5rem">¡<strong>Que aproveche</strong>! · ¡<strong>Que descanses</strong>! · ¡<strong>Que tengas suerte</strong>! · ¡<strong>Que te mejores</strong>! · ¡<strong>Que lo paséis bien</strong>!</p>
+  </div>
+</div>
+
+<!-- ═══════════ TAB 2: TEXTO ═══════════ -->
+<div id="tab-texto" class="tab-panel">
+  <div class="sec-label">Sección 2</div>
+  <h2 class="sec-title">Lectura: antes de que te vayas</h2>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;line-height:1.6">Lee la carta y observa cuándo se declara información (indicativo) y cuándo se desea, se pide o se valora algo (subjuntivo). Pasa el ratón o el dedo por las palabras marcadas.</p>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-swatch" style="background:rgba(0,200,255,0.5)"></span> Indicativo: declaramos / afirmamos</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:rgba(255,45,166,0.5)"></span> Subjuntivo: deseo / petición</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:rgba(168,85,247,0.5)"></span> Subjuntivo: posibilidad / duda</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:rgba(57,255,20,0.5)"></span> Subjuntivo: valoración</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:rgba(255,230,0,0.5)"></span> Fórmula ritual de deseo</div>
+  </div>
+
+  <div class="read-card">
+    <div class="read-title">Antes de que te vayas: una carta para mi hermana</div>
+    <div class="read-body" id="readingText"></div>
+  </div>
+
+  <hr class="div">
+  <h2 class="sec-title">Comprensión lectora</h2>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:1.5rem">Piensa más allá del dato literal: estas preguntas exigen entender la intención del autor.</p>
+  <div id="readQuizContainer"></div>
+  <div class="score-box" id="readScoreBox">
+    <div class="score-num" id="readScoreNum"></div>
+    <div class="score-label">ejercicio completado</div>
+    <button class="reset-btn" onclick="resetReadQuiz()">Intentar de nuevo</button>
+  </div>
+</div>
+
+<!-- ═══════════ TAB 3: MATRICES ═══════════ -->
+<div id="tab-prefijos" class="tab-panel">
+  <div class="sec-label">Sección 3</div>
+  <h2 class="sec-title">Explorador de matrices</h2>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6">Una <strong>matriz</strong> es la expresión principal de la que depende el verbo subordinado (<em>Está claro <strong>que</strong>..., Quiero <strong>que</strong>...</em>). Haz clic en cada una para ver qué modo exige y por qué.</p>
+  <div class="prefix-grid" id="prefixGrid"></div>
+  <div class="prefix-detail" id="prefixDetail"></div>
+  <hr class="div">
+  <div class="note">
+    <strong>Cómo reconocerlas:</strong> si la matriz <em>declara</em> (afirma o supone) algo, va con indicativo. Si <em>no declara</em> —porque expresa deseo, petición, posibilidad, duda o una valoración sobre algo ya aceptado—, va con subjuntivo.
+  </div>
+</div>
+
+<!-- ═══════════ TAB 3: TEST ═══════════ -->
+<div id="tab-test" class="tab-panel">
+  <div class="sec-label">Sección 4</div>
+  <h2 class="sec-title">Test de opción múltiple</h2>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:1.5rem">Elige la opción correcta. Recibirás explicación inmediata en cada pregunta.</p>
+  <div id="quizContainer"></div>
+  <div class="score-box" id="scoreBox">
+    <div class="score-num" id="scoreNum"></div>
+    <div class="score-label">ejercicio completado</div>
+    <button class="reset-btn" onclick="resetQuiz()">Intentar de nuevo</button>
+  </div>
+</div>
+
+<!-- ═══════════ TAB 4: HUECOS ═══════════ -->
+<div id="tab-fill" class="tab-panel">
+  <div class="sec-label">Sección 5</div>
+  <h2 class="sec-title">Completa con la forma correcta</h2>
+  <p style="font-size:14px;color:var(--muted);margin-bottom:1.5rem">Escribe el verbo entre paréntesis en indicativo o subjuntivo, según pida la matriz de la frase.</p>
+  <div id="fillContainer"></div>
+</div>
+
+<!-- ═══════════ TAB 5: DRAG ═══════════ -->
+<div id="tab-drag" class="tab-panel">
+  <div class="sec-label">Sección 6</div>
+  <h2 class="sec-title">Clasifica las matrices</h2>
+  <p class="drag-instructions">Arrastra cada matriz al cajón correcto, según declare (indicativo) o no declare (subjuntivo) el contenido subordinado.</p>
+  <div id="dragBank" class="drag-bank"></div>
+  <div class="bins-wrap">
+    <div class="drop-bin" id="binInd" data-bin="ind" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="dropToBin(event,this)">
+      <div class="drop-bin-label" style="color:var(--cyan)">INDICATIVO — declaramos</div>
+    </div>
+    <div class="drop-bin" id="binSub" data-bin="sub" ondragover="event.preventDefault();this.classList.add('over')" ondragleave="this.classList.remove('over')" ondrop="dropToBin(event,this)">
+      <div class="drop-bin-label" style="color:var(--pink)">SUBJUNTIVO — no declaramos</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:0;flex-wrap:wrap;">
+    <button class="drag-check-btn" onclick="checkDrag()">Comprobar respuestas</button>
+    <button class="drag-reset-btn" onclick="resetDrag()">Reiniciar</button>
+  </div>
+  <div class="drag-result" id="dragResult"></div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">© 2026 <span>Silabos.com</span> · Pedagogía · IA · ELE</div>
+  <span class="footer-level">B1 · MCER</span>
+</footer>
+
+<script>
+// ─── DATA ────────────────────────────────────────────
+const prefixes = [
+  { id:'declara', label:'Está claro que', color:'#00C8FF', reg:'ind', regLabel:'declaramos / afirmamos',
+    meaning:'Presenta el contenido subordinado como un hecho aceptado por el hablante. Siempre con indicativo.',
+    words:['sé que','es verdad que','no hay duda de que','nos han contado que','resulta que'],
+    exs:['<strong>Está claro que</strong> el problema <strong>tiene</strong> solución.','<strong>Sé que</strong> tú nunca <strong>mientes</strong>.'] },
+  { id:'creo', label:'Creo que / Supongo que', color:'#00C8FF', reg:'ind', regLabel:'declaramos una opinión o suposición',
+    meaning:'Aunque sea una opinión o una suposición, el hablante la presenta como propia declaración: va con indicativo.',
+    words:['me parece que','pienso que','supongo que','me imagino que'],
+    exs:['<strong>Creo que</strong> Marcos ya <strong>sabe</strong> la noticia.','<strong>Supongo que</strong> el tren <strong>llegará</strong> tarde, como siempre.'] },
+  { id:'quiero', label:'Quiero que / Espero que', color:'#FF2DA6', reg:'des', regLabel:'deseo (sujetos distintos)',
+    meaning:'No declaramos nada: expresamos un deseo sobre algo que todavía no es real. Con sujetos distintos respecto al verbo principal, subjuntivo.',
+    words:['deseo que','necesito que','prefiero que','tengo ganas de que'],
+    exs:['<strong>Espero que</strong> <strong>apruebes</strong> el examen.','<strong>Necesito que</strong> me <strong>llames</strong> en cuanto puedas.'] },
+  { id:'pido', label:'Te pido que / Te aconsejo que', color:'#FF2DA6', reg:'des', regLabel:'petición o consejo',
+    meaning:'Pedimos o aconsejamos una acción a otra persona: no es una declaración, es una petición. Siempre subjuntivo.',
+    words:['te recomiendo que','te ruego que','insisto en que','te exijo que'],
+    exs:['<strong>Te pido que</strong> me <strong>disculpes</strong>.','<strong>Te aconsejo que</strong> <strong>descanses</strong> un poco más.'] },
+  { id:'importante', label:'Es importante que / Es necesario que', color:'#FF2DA6', reg:'des', regLabel:'necesidad concretada en alguien',
+    meaning:'Con sujeto explícito en la subordinada, concretamos la necesidad en alguien: subjuntivo. Sin "que" + sujeto, el infinitivo generaliza.',
+    words:['es mejor que','hace falta que','es esencial que'],
+    exs:['<strong>Es importante que</strong> <strong>llegues</strong> puntual.','<strong>Es necesario que</strong> todos <strong>colaboren</strong>.'] },
+  { id:'posible', label:'Es posible que / Puede ser que', color:'#A855F7', reg:'pos', regLabel:'posibilidad, no certeza',
+    meaning:'Presentamos algo solo como posible, no como un hecho confirmado: subjuntivo.',
+    words:['es probable que','cabe la posibilidad de que','tal vez (+ subjuntivo o indicativo)'],
+    exs:['<strong>Es posible que</strong> <strong>llueva</strong> esta tarde.','<strong>Puede ser que</strong> ya lo <strong>sepan</strong>.'] },
+  { id:'noceo', label:'No creo que / Dudo que', color:'#A855F7', reg:'pos', regLabel:'cuestionamos o negamos',
+    meaning:'Negamos o ponemos en duda una información: ya no la declaramos, por eso pasa a subjuntivo.',
+    words:['no estoy seguro de que','no es verdad que','es mentira que','no parece que'],
+    exs:['<strong>No creo que</strong> <strong>sea</strong> tan difícil.','<strong>Dudo que</strong> el avión <strong>llegue</strong> a tiempo.'] },
+  { id:'alegra', label:'Me alegra que / Es una pena que', color:'#39FF14', reg:'val', regLabel:'valoramos algo ya aceptado',
+    meaning:'La información ya se acepta como verdadera; solo añadimos una reacción o un juicio personal sobre ella. Siempre subjuntivo.',
+    words:['me parece bien que','es normal que','qué raro que','es una sorpresa que','me sorprende que'],
+    exs:['<strong>Me alegra que</strong> ya <strong>estés</strong> mejor.','<strong>Es una pena que</strong> no <strong>puedas</strong> venir.'] },
+  { id:'decir', label:'Decir que (declarar o pedir)', color:'#FF6B00', reg:'dual', regLabel:'doble valor: informa o pide',
+    meaning:'Con decir, repetir, insistir en, el modo depende de la función: si informamos de un hecho, indicativo; si transmitimos una orden o petición, subjuntivo.',
+    words:['repetir que','insistir en que'],
+    exs:['<strong>Me ha dicho que viene</strong> (me informa).','<strong>Me ha dicho que venga</strong> (me lo pide).'] },
+  { id:'ritual', label:'¡Que + subjuntivo! (fórmulas)', color:'#FFE600', reg:'rit', regLabel:'deseo ritual, sin verbo principal',
+    meaning:'Fórmula fija de buen deseo en situaciones sociales muy concretas, sin verbo principal explícito (se sobreentiende "deseo que...").',
+    words:['que aproveche','que descanses','que tengas suerte','que te mejores'],
+    exs:['¡<strong>Que aproveche</strong>!','¡<strong>Que te vaya bien</strong>!'] },
+];
+
+const regColor = { ind:'var(--cyan)', des:'var(--pink)', pos:'var(--purple)', val:'var(--green)', dual:'var(--orange)', rit:'var(--yellow)' };
+const regBg = { ind:'rgba(0,200,255,0.08)', des:'rgba(255,45,166,0.08)', pos:'rgba(168,85,247,0.08)', val:'rgba(57,255,20,0.08)', dual:'rgba(255,107,0,0.08)', rit:'rgba(255,230,0,0.08)' };
+const regBorder = { ind:'rgba(0,200,255,0.25)', des:'rgba(255,45,166,0.25)', pos:'rgba(168,85,247,0.25)', val:'rgba(57,255,20,0.25)', dual:'rgba(255,107,0,0.25)', rit:'rgba(255,230,0,0.25)' };
+
+function renderPrefixes() {
+  document.getElementById('prefixGrid').innerHTML = prefixes.map(p => `
+    <div class="prefix-card" id="pc-${p.id}" onclick="togglePrefix('${p.id}')">
+      <div class="prefix-main" style="color:${p.color}">${p.label}</div>
+      <div class="prefix-hint">${p.words[0]}, ${p.words[1]}…</div>
+    </div>`).join('');
+}
+
+let activePrefix = null;
+function togglePrefix(id) {
+  const detail = document.getElementById('prefixDetail');
+  document.querySelectorAll('.prefix-card').forEach(c => c.classList.remove('sel'));
+  if (activePrefix === id) { detail.classList.remove('visible'); activePrefix = null; return; }
+  activePrefix = id;
+  document.getElementById('pc-'+id).classList.add('sel');
+  const p = prefixes.find(x => x.id === id);
+  detail.innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.5rem">
+      <div class="detail-head" style="color:${p.color}">${p.label}</div>
+      <span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;background:${regBg[p.reg]};color:${regColor[p.reg]};border:1px solid ${regBorder[p.reg]}">${p.regLabel}</span>
+    </div>
+    <div class="detail-meaning">${p.meaning}</div>
+    <div class="chips">${p.words.map(w=>`<span class="chip">${w}</span>`).join('')}</div>
+    <div class="detail-ex">${p.exs.map(e=>`<div>▸ ${e}</div>`).join('')}</div>`;
+  detail.classList.add('visible');
+}
+
+// ─── TEXTO DE LECTURA ────────────────────────────────
+const readingParas = [
+  'Querida Valentina: <span class="hl-ind">sé que</span> esta decisión no <strong>ha sido</strong> fácil para ti, y <span class="hl-ind">está claro que</span> <strong>necesitas</strong> este cambio para crecer. Llevas meses hablando de irte y, aunque al principio me costó aceptarlo, ahora <span class="hl-ind">pienso que</span> <strong>has tomado</strong> la decisión correcta.',
+  '<span class="hl-des">Espero que</span> todo te <strong>vaya</strong> bien desde el primer día, y <span class="hl-des">quiero que</span> <strong>sepas</strong> que aquí siempre tendrás un sitio al que volver. <span class="hl-des">Te pido</span> solo una cosa: <span class="hl-des">que me escribas</span> cada semana, aunque sea un mensaje corto.',
+  '<span class="hl-pos">No creo que</span> <strong>sea</strong> fácil al principio: <span class="hl-pos">es posible que</span> <strong>extrañes</strong> la comida de mamá y las tardes de domingo en el patio. <span class="hl-pos">Dudo</span> incluso <span class="hl-pos">que</span> el café de allí <strong>sepa</strong> igual que el nuestro. Pero también <span class="hl-ind">estoy segura de que</span> <strong>vas</strong> a hacer amigos muy rápido.',
+  '<span class="hl-val">Me alegra mucho que</span> por fin <strong>te decidas</strong> a perseguir lo que quieres, y <span class="hl-val">me parece estupendo que</span> <strong>persigas</strong> tus sueños sin mirar atrás. <span class="hl-val">Es una pena que</span> <strong>vivamos</strong> tan lejos a partir de ahora, pero eso no cambia nada entre nosotras.',
+  'Antes de despedirme, recuerda lo que siempre dice papá: él <span class="hl-ind">dice que</span> <strong>vienes</strong> a comer el domingo que viene —eso ya está decidido—, aunque a veces también <span class="hl-des">dice que</span> <strong>vengas</strong> antes, si puedes, para ayudarle con las maletas.',
+  'Te quiero muchísimo. ¡<span class="hl-rit">Que tengas</span> un buen viaje, hermanita, y <span class="hl-rit">que te vaya</span> todo de maravilla! Tu hermana, Carmen.',
+];
+
+function renderReading() {
+  document.getElementById('readingText').innerHTML = readingParas.map(p=>`<p>${p}</p>`).join('');
+}
+
+// ─── QUIZ DE COMPRENSIÓN LECTORA ─────────────────────
+const readQuizData = [
+  { q:'En el tercer párrafo, la autora escribe "no creo que sea fácil" y "es posible que extrañes...". ¿Qué consigue con esas formas en subjuntivo?',
+    opts:['Declarar como hechos seguros las dificultades que tendrá Valentina.','Anticipar, sin presentarlas como certezas, posibles dificultades que Valentina podría sentir.','Pedirle a Valentina que tenga dificultades.','Mostrar que no está segura de que Valentina se vaya a ir.'], ans:1,
+    exp:'"No creo que" y "es posible que" presentan el contenido como duda o posibilidad, no como un hecho confirmado; por eso exigen subjuntivo: la autora imagina lo que podría pasar, sin declararlo.' },
+  { q:'En el penúltimo párrafo, ¿qué diferencia de significado hay entre "dice que vienes" y "dice que vengas"?',
+    opts:['Ninguna: son intercambiables y significan lo mismo.','"Dice que vienes" informa de un hecho ya decidido; "dice que vengas" transmite una petición o sugerencia de papá.','"Dice que vengas" contiene un error gramatical que debería ser "vienes".','Ambas formas se refieren a algo que ya ocurrió en el pasado.'], ans:1,
+    exp:'Con decir, el indicativo declara información (vienes = es un hecho) y el subjuntivo transmite una petición (vengas = papá lo pide). El verbo es el mismo; cambia su función.' },
+  { q:'¿Qué función cumplen frases como "me alegra mucho que te decidas" o "es una pena que vivamos tan lejos"?',
+    opts:['Poner en duda si esas situaciones son ciertas.','Pedir que esas situaciones cambien de inmediato.','Comentar y valorar emocionalmente situaciones que ya se aceptan como reales.','Declarar información nueva que el lector todavía no conocía.'], ans:2,
+    exp:'Ambas matrices (me alegra que, es una pena que) presuponen que el hecho es real; lo que añaden es una reacción personal sobre él. Por eso son valoraciones, y van siempre en subjuntivo.' },
+  { q:'A partir del conjunto de deseos, peticiones y valoraciones de la carta, ¿qué actitud predomina en quien la escribe?',
+    opts:['Indiferencia ante la decisión de su hermana.','Apoyo afectuoso, con cierta preocupación realista pero sin intención de disuadirla.','Desacuerdo total con que su hermana se vaya.','Un tono puramente informativo, sin implicación emocional.'], ans:1,
+    exp:'La carta combina deseos (espero que, quiero que), una valoración sincera de las dificultades posibles (es posible que extrañes) y alegría por la decisión (me alegra que te decidas): apoyo emocional con los pies en la tierra.' },
+  { q:'La despedida final dice "¡Que tengas un buen viaje!" en lugar de, por ejemplo, "tienes un buen viaje". ¿Por qué?',
+    opts:['Porque es una fórmula fija de buen deseo en situaciones sociales, no una afirmación sobre el viaje.','Porque "tienes" sería gramaticalmente incorrecto en cualquier otro contexto.','Porque el viaje todavía no se ha decidido y podría no ocurrir.','Porque la oración necesita obligatoriamente un sujeto explícito.'], ans:0,
+    exp:'"Que + subjuntivo" sin verbo principal es la fórmula típica de los deseos rituales (que aproveche, que descanses): no declara nada sobre el viaje, solo expresa un buen deseo hacia la persona que se va.' },
+];
+
+let readAnswered = [];
+function renderReadQuiz() {
+  readAnswered = new Array(readQuizData.length).fill(false);
+  document.getElementById('readQuizContainer').innerHTML = readQuizData.map((q,i)=>`
+    <div class="quiz-card" id="rqc-${i}">
+      <div class="q-num">Pregunta ${i+1} de ${readQuizData.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${q.opts.map((o,j)=>`<button class="opt-btn" id="ropt-${i}-${j}" onclick="answerRead(${i},${j})">${o}</button>`).join('')}</div>
+      <div class="feedback" id="rfb-${i}"></div>
+    </div>`).join('');
+  document.getElementById('readScoreBox').classList.remove('visible');
+}
+
+function answerRead(qi,oi) {
+  if(readAnswered[qi]) return;
+  readAnswered[qi] = true;
+  const q = readQuizData[qi];
+  const fb = document.getElementById('rfb-'+qi);
+  for(let j=0;j<q.opts.length;j++){
+    const btn = document.getElementById('ropt-'+qi+'-'+j);
+    btn.disabled = true;
+    if(j===q.ans) btn.classList.add(oi===q.ans?'correct':'missed');
+    else if(j===oi) btn.classList.add('wrong');
+  }
+  fb.textContent = (oi===q.ans?'✓ Correcto. ':'✗ Incorrecto. ') + q.exp;
+  fb.className = 'feedback '+(oi===q.ans?'ok':'fail');
+  if(readAnswered.every(Boolean)) {
+    let c=0;
+    readQuizData.forEach((_,i)=>{ if(document.getElementById('ropt-'+i+'-'+readQuizData[i].ans).classList.contains('correct')) c++; });
+    document.getElementById('readScoreNum').textContent = c+' / '+readQuizData.length;
+    document.getElementById('readScoreBox').classList.add('visible');
+  }
+}
+function resetReadQuiz(){ renderReadQuiz(); }
+
+// ─── QUIZ ────────────────────────────────────────────
+const quizData = [
+  { q:'Elige la opción correcta: "Está claro que María ___ razón."',
+    opts:['tiene','tenga','tener','tendría'], ans:0,
+    exp:'"Está claro que" declara un hecho aceptado por el hablante: indicativo.' },
+  { q:'"Espero que ___ buen tiempo este fin de semana."',
+    opts:['hace','haga','hará','ha hecho'], ans:1,
+    exp:'"Espero que" expresa un deseo, no una declaración: subjuntivo (haga).' },
+  { q:'"No creo que él ___ la verdad."',
+    opts:['dice','diga','dirá','ha dicho'], ans:1,
+    exp:'"No creo que" cuestiona la información: ya no se declara como cierta, por eso pasa a subjuntivo.' },
+  { q:'"Me alegra que (vosotros) ___ aprobado el examen."',
+    opts:['habéis','hayáis','habríais','habíais'], ans:1,
+    exp:'"Me alegra que" valora un hecho ya aceptado como real: subjuntivo (en este caso, perfecto de subjuntivo: hayáis aprobado).' },
+  { q:'"Quiero ___ a la fiesta el sábado." (el sujeto de querer e ir es el mismo)',
+    opts:['que vaya','ir','que voy','iría'], ans:1,
+    exp:'Si el sujeto del verbo principal y el subordinado coinciden (yo quiero, yo voy), se usa infinitivo, no "que + subjuntivo".' },
+  { q:'"Quiero que (tú) ___ a la fiesta el sábado." (sujetos distintos)',
+    opts:['vas','vayas','irás','ibas'], ans:1,
+    exp:'Con sujetos distintos (yo quiero, tú vas), es obligatorio "que + subjuntivo": que vayas.' },
+  { q:'"Mi madre dice que (yo) ___ más despacio." (me lo está pidiendo)',
+    opts:['como','coma','comeré','comería'], ans:1,
+    exp:'Aquí decir = pedir/ordenar, no informar: por eso el verbo subordinado va en subjuntivo (coma).' },
+  { q:'"Mi madre dice que (yo) ___ demasiado rápido." (me está informando de lo que observa)',
+    opts:['come','coma','comería','comiera'], ans:0,
+    exp:'Aquí decir = declarar/informar de una observación: indicativo (como).' },
+  { q:'"Es posible que (ellos) ___ tarde a la reunión."',
+    opts:['llegan','lleguen','llegarán','llegarían'], ans:1,
+    exp:'"Es posible que" presenta algo como mera posibilidad, no como certeza: subjuntivo.' },
+  { q:'"¡Que ___ mucha suerte en el examen!" (fórmula de buen deseo)',
+    opts:['tienes','tengas','tendrás','tuvieras'], ans:1,
+    exp:'"Que + presente de subjuntivo" sin verbo principal es la fórmula fija de los deseos rituales: que tengas, que aproveche, que descanses.' },
+];
+
+let answered = [];
+function renderQuiz() {
+  answered = new Array(quizData.length).fill(false);
+  document.getElementById('quizContainer').innerHTML = quizData.map((q,i)=>`
+    <div class="quiz-card" id="qc-${i}">
+      <div class="q-num">Pregunta ${i+1} de ${quizData.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${q.opts.map((o,j)=>`<button class="opt-btn" id="opt-${i}-${j}" onclick="answer(${i},${j})">${o}</button>`).join('')}</div>
+      <div class="feedback" id="fb-${i}"></div>
+    </div>`).join('');
+  document.getElementById('scoreBox').classList.remove('visible');
+}
+
+function answer(qi,oi) {
+  if(answered[qi]) return;
+  answered[qi] = true;
+  const q = quizData[qi];
+  const fb = document.getElementById('fb-'+qi);
+  for(let j=0;j<q.opts.length;j++){
+    const btn = document.getElementById('opt-'+qi+'-'+j);
+    btn.disabled = true;
+    if(j===q.ans) btn.classList.add(oi===q.ans?'correct':'missed');
+    else if(j===oi) btn.classList.add('wrong');
+  }
+  fb.textContent = (oi===q.ans?'✓ Correcto. ':'✗ Incorrecto. ') + q.exp;
+  fb.className = 'feedback '+(oi===q.ans?'ok':'fail');
+  if(answered.every(Boolean)) {
+    let c=0;
+    quizData.forEach((_,i)=>{ if(document.getElementById('opt-'+i+'-'+quizData[i].ans).classList.contains('correct')) c++; });
+    document.getElementById('scoreNum').textContent = c+' / '+quizData.length;
+    document.getElementById('scoreBox').classList.add('visible');
+  }
+}
+function resetQuiz(){ renderQuiz(); }
+
+// ─── FILL ────────────────────────────────────────────
+const fillData = [
+  { orig:'Mis padres quieren que (yo) ___ Medicina.', key:'estudiar', sols:['estudie'] },
+  { orig:'Es evidente que Carla ___ razón en esto.', key:'tener', sols:['tiene'] },
+  { orig:'No creo que ellos ___ la noticia todavía.', key:'saber', sols:['sepan'] },
+  { orig:'Me alegra mucho que (vosotros) ___ a la boda.', key:'venir', sols:['vengáis','vengan'] },
+  { orig:'Es posible que (nosotros) ___ un poco tarde.', key:'llegar', sols:['lleguemos'] },
+  { orig:'Sé que tú siempre ___ la verdad.', key:'decir', sols:['dices'] },
+  { orig:'Ojalá ___ buen tiempo el día de la excursión.', key:'hacer', sols:['haga'] },
+  { orig:'Te pido que (tú) ___ más paciencia conmigo.', key:'tener', sols:['tengas'] },
+];
+
+function renderFill() {
+  document.getElementById('fillContainer').innerHTML = fillData.map((t,i)=>`
+    <div class="card" id="fc-${i}" style="margin-bottom:0.85rem">
+      <div class="q-num" style="margin-bottom:0.4rem">Frase ${i+1}</div>
+      <div class="q-text" style="margin-bottom:0.75rem;font-size:14px">${t.orig}</div>
+      <div class="fill-wrap">
+        <span style="color:var(--muted);font-size:13px">verbo <em>${t.key}</em> ➜</span>
+        <input class="fill-input" id="fi-${i}" placeholder="forma correcta…" onkeydown="if(event.key==='Enter')checkFill(${i})">
+        <button class="check-btn" onclick="checkFill(${i})">Comprobar</button>
+      </div>
+      <div class="feedback" id="ffb-${i}"></div>
+    </div>`).join('');
+}
+
+function norm(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s/g,''); }
+
+function checkFill(i) {
+  const t = fillData[i];
+  const inp = document.getElementById('fi-'+i);
+  const fb = document.getElementById('ffb-'+i);
+  const val = inp.value.trim();
+  if(!val) return;
+  const nv = norm(val);
+  const exact = t.sols.some(s => norm(s)===nv);
+  if(exact) {
+    inp.className='fill-input correct';
+    fb.textContent = '✓ Correcto.' + (t.sols.length>1 ? ' También se acepta: '+t.sols.filter(s=>norm(s)!==nv).join(', ')+'.' : '');
+    fb.className='feedback ok';
+  } else {
+    inp.className='fill-input wrong';
+    fb.textContent = '✗ Revisa el modo (indicativo o subjuntivo) y la persona del verbo "'+t.key+'".';
+    fb.className='feedback fail';
+  }
+}
+
+// ─── DRAG & DROP: CLASIFICAR MATRICES ────────────────
+const binData = [
+  { text:'Está claro que', bin:'ind' },
+  { text:'Sé que', bin:'ind' },
+  { text:'Nos han contado que', bin:'ind' },
+  { text:'No hay duda de que', bin:'ind' },
+  { text:'Me parece que', bin:'ind' },
+  { text:'Es verdad que', bin:'ind' },
+  { text:'Es posible que', bin:'sub' },
+  { text:'Dudo que', bin:'sub' },
+  { text:'Me alegra que', bin:'sub' },
+  { text:'Espero que', bin:'sub' },
+  { text:'No creo que', bin:'sub' },
+  { text:'Es una pena que', bin:'sub' },
+];
+
+function shuffleArr(arr) {
+  const a=[...arr]; for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]; } return a;
+}
+
+function renderDrag() {
+  const shuffled = shuffleArr(binData);
+  document.getElementById('dragBank').innerHTML = shuffled.map((it,i)=>`
+    <div class="drag-item" id="bi-${i}" draggable="true" data-bin="${it.bin}"
+      ondragstart="dragStart(event)" ondragend="dragEnd(event)">${it.text}</div>`).join('');
+  document.getElementById('binInd').innerHTML = '<div class="drop-bin-label" style="color:var(--cyan)">INDICATIVO — declaramos</div>';
+  document.getElementById('binSub').innerHTML = '<div class="drop-bin-label" style="color:var(--pink)">SUBJUNTIVO — no declaramos</div>';
+  document.getElementById('dragResult').className = 'drag-result';
+}
+
+function dragStart(e) {
+  e.dataTransfer.setData('text/plain', e.target.id);
+  e.target.classList.add('dragging');
+}
+function dragEnd(e) { e.target.classList.remove('dragging'); }
+
+function dropToBin(e, binEl) {
+  e.preventDefault();
+  binEl.classList.remove('over');
+  const id = e.dataTransfer.getData('text/plain');
+  const el = document.getElementById(id);
+  if (el) { el.classList.remove('correct-fill','wrong-fill'); binEl.appendChild(el); }
+}
+
+function checkDrag() {
+  let correct = 0, placed = 0;
+  document.querySelectorAll('#binInd .drag-item').forEach(el=>{
+    placed++;
+    if (el.dataset.bin === 'ind') { el.classList.add('correct-fill'); el.classList.remove('wrong-fill'); correct++; }
+    else { el.classList.add('wrong-fill'); el.classList.remove('correct-fill'); }
+  });
+  document.querySelectorAll('#binSub .drag-item').forEach(el=>{
+    placed++;
+    if (el.dataset.bin === 'sub') { el.classList.add('correct-fill'); el.classList.remove('wrong-fill'); correct++; }
+    else { el.classList.add('wrong-fill'); el.classList.remove('correct-fill'); }
+  });
+  const res = document.getElementById('dragResult');
+  const pending = binData.length - placed;
+  if (correct === binData.length) {
+    res.textContent = '✓ ¡Perfecto! Has clasificado todas las matrices correctamente.';
+    res.className = 'drag-result ok';
+  } else {
+    res.textContent = `${correct} de ${binData.length} correctas.` + (pending>0 ? ` Todavía quedan ${pending} sin clasificar.` : ' Las marcadas en rosa necesitan revisión.');
+    res.className = 'drag-result partial';
+  }
+}
+
+function resetDrag() { renderDrag(); }
+
+// ─── TABS ─────────────────────────────────────────────
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ─── INIT ─────────────────────────────────────────────
+renderReading();
+renderReadQuiz();
+renderPrefixes();
+renderQuiz();
+renderFill();
+renderDrag();
+</script>
+</body>
+</html>
