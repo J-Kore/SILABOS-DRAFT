@@ -1083,7 +1083,7 @@ export default function SilabosLanding() {
           {[
             { val: "+10 años", sub: "Experiencia ELE", color: S.fuxia },
             { val: "A1–C2", sub: "Todos los niveles", color: S.morado },
-            { val: "3 apps", sub: "Disponibles ya", color: S.azul },
+            { val: "5 apps", sub: "Disponibles ya", color: S.azul },
             { val: "100%", sub: "Online", color: S.amarillo },
           ].map((s, i) => (
             <div key={i} style={{ background: "rgba(10,10,18,0.5)", padding: "1.5rem 1.25rem", textAlign: "center" }}>
