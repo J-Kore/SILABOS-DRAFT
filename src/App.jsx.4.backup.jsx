@@ -911,20 +911,6 @@ export default function SilabosLanding() {
             </li>
           ))}
           <li>
-            {/* Enlace a /aula/: NO hace scrollTo (es otra página estática), por eso es <a>, no <button>, y va con su propio estilo de píldora para diferenciarse del resto de la nav */}
-            <a href="/aula/index.html" onClick={() => track("abrir_aula")} style={{
-              display: "inline-flex", alignItems: "center", gap: "6px",
-              fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 600,
-              letterSpacing: "0.08em", textTransform: "uppercase",
-              color: S.azul, textDecoration: "none",
-              border: `1px solid ${S.azul}55`, borderRadius: "20px",
-              padding: "5px 14px", background: `${S.azul}0F`,
-            }}>
-              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: S.azul }} />
-              Aula
-            </a>
-          </li>
-          <li>
             <button onClick={() => scrollTo("contacto")} className="btn-primary breathe-box" style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 500,
               letterSpacing: "0.07em", textTransform: "uppercase",
@@ -959,18 +945,6 @@ export default function SilabosLanding() {
               borderBottom: "0.5px solid rgba(255,255,255,0.06)",
             }}>{l.label}</button>
           ))}
-          <a href="/aula/index.html"
-            onClick={() => { track("abrir_aula"); setMenuOpen(false); }}
-            style={{
-              display: "flex", alignItems: "center", gap: "8px",
-              fontFamily: "'DM Sans', sans-serif", fontSize: "14px", fontWeight: 600,
-              letterSpacing: "0.1em", textTransform: "uppercase",
-              color: S.azul, textDecoration: "none", padding: "8px 0",
-              borderBottom: "0.5px solid rgba(255,255,255,0.06)",
-            }}>
-            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: S.azul }} />
-            Aula
-          </a>
         </div>
       )}
 
@@ -1204,7 +1178,9 @@ export default function SilabosLanding() {
 
           {/* Banner Aula — distinto de las tarjetas de app: enlaza a la zona de práctica para alumnos */}
           <a
-            href="/aula/index.html"
+            href="/aula/"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => track("abrir_aula")}
             data-reveal
             style={{

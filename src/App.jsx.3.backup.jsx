@@ -905,25 +905,11 @@ export default function SilabosLanding() {
                 background: "none", border: "none", cursor: "pointer",
                 fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 400,
                 letterSpacing: "0.08em", textTransform: "uppercase",
-                color: activeSection === l.id ? "#fff" : "rgba(255,255,255,0.72)",
+                color: activeSection === l.id ? "#fff" : "rgba(255,255,255,0.6)",
                 padding: 0,
               }}>{l.label}</button>
             </li>
           ))}
-          <li>
-            {/* Enlace a /aula/: NO hace scrollTo (es otra página estática), por eso es <a>, no <button>, y va con su propio estilo de píldora para diferenciarse del resto de la nav */}
-            <a href="/aula/index.html" onClick={() => track("abrir_aula")} style={{
-              display: "inline-flex", alignItems: "center", gap: "6px",
-              fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 600,
-              letterSpacing: "0.08em", textTransform: "uppercase",
-              color: S.azul, textDecoration: "none",
-              border: `1px solid ${S.azul}55`, borderRadius: "20px",
-              padding: "5px 14px", background: `${S.azul}0F`,
-            }}>
-              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: S.azul }} />
-              Aula
-            </a>
-          </li>
           <li>
             <button onClick={() => scrollTo("contacto")} className="btn-primary breathe-box" style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 500,
@@ -959,18 +945,6 @@ export default function SilabosLanding() {
               borderBottom: "0.5px solid rgba(255,255,255,0.06)",
             }}>{l.label}</button>
           ))}
-          <a href="/aula/index.html"
-            onClick={() => { track("abrir_aula"); setMenuOpen(false); }}
-            style={{
-              display: "flex", alignItems: "center", gap: "8px",
-              fontFamily: "'DM Sans', sans-serif", fontSize: "14px", fontWeight: 600,
-              letterSpacing: "0.1em", textTransform: "uppercase",
-              color: S.azul, textDecoration: "none", padding: "8px 0",
-              borderBottom: "0.5px solid rgba(255,255,255,0.06)",
-            }}>
-            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: S.azul }} />
-            Aula
-          </a>
         </div>
       )}
 
@@ -1027,7 +1001,7 @@ export default function SilabosLanding() {
 
           {/* Apps rápidas */}
           <div data-reveal style={{ "--reveal-i": 2 }}>
-            <p style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.72)", marginBottom: "0.75rem" }}>
+            <p style={{ fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "0.75rem" }}>
               Apps disponibles ahora
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -1068,7 +1042,7 @@ export default function SilabosLanding() {
         }}>
           <div style={{ background: "rgba(10,10,18,0.5)", padding: "1.5rem 1.25rem", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px" }}>
             <InsigniaStatic size={48} />
-            <p style={{ fontSize: "10px", color: "rgba(255,255,255,0.72)", letterSpacing: "0.06em", textTransform: "uppercase" }}>SILABOS</p>
+            <p style={{ fontSize: "10px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.06em", textTransform: "uppercase" }}>SILABOS</p>
           </div>
           {[
             { val: "+10 años", sub: "Experiencia ELE", color: S.fuxia },
@@ -1078,7 +1052,7 @@ export default function SilabosLanding() {
           ].map((s, i) => (
             <div key={i} style={{ background: "rgba(10,10,18,0.5)", padding: "1.5rem 1.25rem", textAlign: "center" }}>
               <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "26px", color: s.color, marginBottom: "4px" }}>{s.val}</p>
-              <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.72)", letterSpacing: "0.06em", textTransform: "uppercase" }}>{s.sub}</p>
+              <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)", letterSpacing: "0.06em", textTransform: "uppercase" }}>{s.sub}</p>
             </div>
           ))}
         </div>
@@ -1087,7 +1061,7 @@ export default function SilabosLanding() {
       {/* Para quién */}
       <section style={{ padding: "0 1.5rem 5rem" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <p style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.72)", marginBottom: "1.5rem" }}>Para quién</p>
+          <p style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "1.5rem" }}>Para quién</p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1px", background: "rgba(255,255,255,0.06)" }}>
             {[
               {
@@ -1202,43 +1176,6 @@ export default function SilabosLanding() {
             ))}
           </div>
 
-          {/* Banner Aula — distinto de las tarjetas de app: enlaza a la zona de práctica para alumnos */}
-          <a
-            href="/aula/index.html"
-            onClick={() => track("abrir_aula")}
-            data-reveal
-            style={{
-              "--reveal-i": APPS.length,
-              display: "flex", alignItems: "center", gap: "1.25rem", flexWrap: "wrap",
-              textDecoration: "none",
-              background: "rgba(255,255,255,0.03)",
-              border: `1px dashed ${S.azul}55`,
-              borderRadius: "6px",
-              padding: "1.5rem 1.75rem",
-              marginBottom: "3rem",
-              transition: "border-color 0.2s, background 0.2s",
-            }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = `${S.azul}AA`; e.currentTarget.style.background = "rgba(255,255,255,0.05)"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = `${S.azul}55`; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
-          >
-            <div style={{ width: "44px", height: "44px", flexShrink: 0, borderRadius: "8px", background: `${S.azul}1A`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke={S.azul} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 3 2 8l10 5 10-5-10-5Z" />
-                <path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" />
-              </svg>
-            </div>
-            <div style={{ flex: "1 1 240px" }}>
-              <p style={{ fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: S.azul, marginBottom: "4px" }}>Para tus alumnos</p>
-              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "18px", color: "#fff" }}>Aula · material de repaso por niveles</p>
-            </div>
-            <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.75)", lineHeight: "1.6", flex: "2 1 280px", margin: 0 }}>
-              Actividades interactivas (A1–B2) que uso en clase para presentar y practicar contenidos: teoría, textos comentados y ejercicios autocorregidos.
-            </p>
-            <span style={{ display: "flex", alignItems: "center", gap: "6px", color: S.azul, fontSize: "13px", fontWeight: 500, letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
-              Entrar al aula <span style={{ fontSize: "16px" }}>→</span>
-            </span>
-          </a>
-
           {/* Texto de interés / editorial */}
           <div data-reveal style={{ "--reveal-i": 0, borderTop: "0.5px solid rgba(255,255,255,0.07)", paddingTop: "3rem", marginBottom: "3rem", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2.5rem", alignItems: "start" }}>
             <div>
@@ -1261,7 +1198,7 @@ export default function SilabosLanding() {
 
           {/* Cómo trabajo */}
           <div style={{ borderTop: "0.5px solid rgba(255,255,255,0.07)", paddingTop: "3rem" }}>
-            <p style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.72)", marginBottom: "2rem" }}>Cómo trabajo</p>
+            <p style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "2rem" }}>Cómo trabajo</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1px", background: "rgba(255,255,255,0.05)" }}>
               {[
                 { num: "01", titulo: "Input comprensible", desc: "Los materiales y apps se diseñan para que el estudiante reciba español real, ligeramente por encima de su nivel.", color: S.fuxia },
@@ -1337,13 +1274,13 @@ export default function SilabosLanding() {
                       }}>{ep.method}</span>
                       <div>
                         <p style={{ fontFamily: "monospace", fontSize: "12px", color: "#fff", marginBottom: "2px" }}>{ep.path}</p>
-                        <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.72)" }}>{ep.desc}</p>
+                        <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.55)" }}>{ep.desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
                 <div style={{ padding: "10px 16px", background: "rgba(255,255,255,0.02)", borderTop: "0.5px solid rgba(255,255,255,0.05)" }}>
-                  <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.72)", fontFamily: "monospace" }}>// Documentación disponible próximamente</span>
+                  <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.45)", fontFamily: "monospace" }}>// Documentación disponible próximamente</span>
                 </div>
               </div>
 
@@ -1494,7 +1431,7 @@ export default function SilabosLanding() {
 
           {/* Proceso */}
           <div style={{ background: "rgba(255,255,255,0.02)", border: "0.5px solid rgba(255,255,255,0.07)", borderRadius: "6px", padding: "2.5rem" }}>
-            <p style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.72)", marginBottom: "2rem" }}>Cómo empezamos</p>
+            <p style={{ fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "2rem" }}>Cómo empezamos</p>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "1.5rem" }}>
               {[
                 { n: "1", paso: "Contacto", desc: "Cuéntame tus objetivos y nivel actual", color: S.fuxia },
@@ -1507,7 +1444,7 @@ export default function SilabosLanding() {
                     {p.n}
                   </div>
                   <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "16px", color: "#fff" }}>{p.paso}</p>
-                  <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.72)", lineHeight: "1.6" }}>{p.desc}</p>
+                  <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.6)", lineHeight: "1.6" }}>{p.desc}</p>
                 </div>
               ))}
             </div>
@@ -1515,7 +1452,7 @@ export default function SilabosLanding() {
 
           {/* CTA sesión prueba */}
           <div style={{ textAlign: "center", marginTop: "2.5rem" }}>
-            <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.72)", marginBottom: "1rem" }}>Sin compromiso · 20 minutos · 100% online</p>
+            <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.6)", marginBottom: "1rem" }}>Sin compromiso · 20 minutos · 100% online</p>
             <button onClick={() => scrollTo("contacto")} className="btn-primary" style={{
               fontFamily: "'DM Sans', sans-serif", fontSize: "13px", fontWeight: 500,
               letterSpacing: "0.08em", textTransform: "uppercase", color: "#fff",
@@ -1612,7 +1549,7 @@ export default function SilabosLanding() {
                     { key: "asunto", label: "Asunto", type: "text", placeholder: "¿En qué puedo ayudarte?" },
                   ].map(f => (
                     <div key={f.key}>
-                      <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.72)", marginBottom: "6px" }}>{f.label}</label>
+                      <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "6px" }}>{f.label}</label>
                       <input
                         type={f.type}
                         placeholder={f.placeholder}
@@ -1633,7 +1570,7 @@ export default function SilabosLanding() {
                     </div>
                   ))}
                   <div>
-                    <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.72)", marginBottom: "6px" }}>Mensaje</label>
+                    <label style={{ display: "block", fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.6)", marginBottom: "6px" }}>Mensaje</label>
                     <textarea
                       placeholder="Cuéntame más..."
                       required
@@ -1686,18 +1623,18 @@ export default function SilabosLanding() {
               <span style={{ color: S.morado }}>LAB</span>
               <span style={{ color: S.azul }}>OS</span>
             </span>
-            <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.72)", marginLeft: "8px" }}>Pedagogía · IA · ELE</span>
+            <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)", marginLeft: "8px" }}>Pedagogía · IA · ELE</span>
           </div>
           <div style={{ display: "flex", gap: "2rem" }}>
             {NAV_LINKS.map(l => (
               <button key={l.id} onClick={() => scrollTo(l.id)} style={{
                 background: "none", border: "none", cursor: "pointer",
-                fontSize: "11px", color: "rgba(255,255,255,0.72)",
+                fontSize: "11px", color: "rgba(255,255,255,0.5)",
                 letterSpacing: "0.08em", textTransform: "uppercase",
               }}>{l.label}</button>
             ))}
           </div>
-          <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.72)" }}>© {new Date().getFullYear()} SILABOS</p>
+          <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.4)" }}>© {new Date().getFullYear()} SILABOS</p>
         </div>
       </footer>
 
