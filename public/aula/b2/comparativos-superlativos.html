@@ -37,7 +37,9 @@
   .brand-name span:nth-child(3) { color: var(--cyan); }
   .brand-url { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
   .header-badge { font-size: 11px; font-weight: 600; color: var(--green); border: 1px solid rgba(57,255,20,0.3); border-radius: 20px; padding: 4px 12px; letter-spacing: 0.05em; background: rgba(57,255,20,0.06); }
-
+  .back-btn { font-size: 11px; font-weight: 600; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 4px; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.05em; border: 1px solid rgba(168,85,247,0.3); background: rgba(168,85,247,0.06); transition: all 0.15s; }
+  .back-btn:hover { border-color: rgba(149, 48, 217, 0.831); background: rgba(157, 88, 226, 0.901); }  
+  
   /* HERO */
   .hero { padding: 3rem 2rem 2rem; max-width: 900px; margin: 0 auto; }
   .hero-eyebrow { font-size: 11px; font-weight: 600; color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
@@ -240,7 +242,10 @@
       <div class="brand-url">silabos.com · pedagogía · ia · ele</div>
     </div>
   </a>
-  <span class="header-badge">B2 · Gramática</span>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <a href="/aula/index.html#b2" class="back-btn">← Aula</a>
+    <span class="header-badge">B2 · Gramática</span>
+  </div>
 </header>
 
 <!-- HERO -->
@@ -341,9 +346,9 @@
   <p style="font-size:14px;color:var(--muted);margin-bottom:1rem;line-height:1.6">Lee el texto y observa cómo el autor usa comparativos, superlativos y prefijos intensificadores para argumentar. Pasa el ratón o el dedo por las palabras marcadas.</p>
 
   <div class="legend">
-    <div class="legend-item"><span class="legend-swatch" style="background:rgba(0,200,255,0.5)"></span> Comparativos / superlativos relativos</div>
-    <div class="legend-item"><span class="legend-swatch" style="background:rgba(255,45,166,0.5)"></span> Superlativo absoluto (-ísimo)</div>
-    <div class="legend-item"><span class="legend-swatch" style="background:rgba(57,255,20,0.5)"></span> Prefijos superlativos</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:rgba(0, 200, 255, 0.796)"></span> Comparativos / superlativos relativos</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:rgba(255, 45, 167, 0.809)"></span> Superlativo absoluto (-ísimo)</div>
+    <div class="legend-item"><span class="legend-swatch" style="background:rgba(55, 255, 20, 0.812)"></span> Prefijos superlativos</div>
   </div>
 
   <div class="read-card">

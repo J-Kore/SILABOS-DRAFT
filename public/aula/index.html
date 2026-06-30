@@ -35,6 +35,8 @@
   .brand-name span:nth-child(3) { color: var(--cyan); }
   .brand-url { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; }
   .header-badge { font-size: 11px; font-weight: 600; color: var(--green); border: 1px solid rgba(57,255,20,0.3); border-radius: 20px; padding: 4px 12px; letter-spacing: 0.05em; background: rgba(57,255,20,0.06); }
+  .back-btn { font-size: 11px; font-weight: 600; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 4px; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.05em; border: 1px solid rgba(168,85,247,0.3); background: rgba(168,85,247,0.06); transition: all 0.15s; }
+  .back-btn:hover { border-color: rgba(149, 48, 217, 0.831); background: rgba(157, 88, 226, 0.901); }
 
   /* HERO */
   .hero { padding: 3rem 2rem 2rem; max-width: 1040px; margin: 0 auto; }
@@ -134,9 +136,11 @@
       <div class="brand-name"><span>SI</span><span>LAB</span><span>OS</span></div>
       <div class="brand-url">silabos.com · pedagogía · ia · ele</div>
     </div>
-  </a>
-  <span class="header-badge">Aula · Práctica ELE</span>
-</header>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="https://silabos.com" class="back-btn">← Inicio</a>
+      <span class="header-badge">Aula · Práctica ELE</span>
+    </div>
+  </header>
 
 <!-- HERO -->
 <section class="hero">
@@ -174,6 +178,28 @@
   <div id="level-a2" class="level-panel">
     <p class="level-intro">Consolidación: pasado, comparaciones sencillas, planes futuros. Aquí irán apareciendo los artefactos de nivel A2.</p>
     <div class="card-grid">
+
+      <div class="res-card">
+        <div class="res-tags">
+          <span class="res-tag tag-gram">Gramática</span>
+          <span class="res-tag tag-interactivo">Interactivo</span>
+        </div>
+        <div class="res-title">Pretérito Indefinido</div>
+        <div class="res-desc">Habla de hechos pasados finalizados en el pasado, sin conexión con el presente. Como una biografía.</div>
+        <a class="res-btn" href="./a2/preterito-indefinido.html">Abrir actividad →</a>
+      </div>
+
+      <div class="res-card">
+        <div class="res-tags">
+          <span class="res-tag tag-gram">Gramática</span>
+          <span class="res-tag tag-interactivo">Interactivo</span>
+        </div>
+        <div class="res-title">Pretérito Imperfecto</div>
+        <div class="res-desc">Habla de hechos pasados no finalizados en el pasado, sin conexión con el presente. Como un hábito en el pasado.</div>
+        <a class="res-btn" href="./a2/preterito-imperfecto.html">Abrir actividad →</a>
+      </div>
+
+
       <div class="res-card placeholder">
         <div class="placeholder-icon">＋</div>
         <div class="res-title">Próximamente</div>
@@ -245,6 +271,11 @@ function showLevel(id, btn) {
   document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('level-'+id).classList.add('active');
   btn.classList.add('active');
+}
+const hashLevel = location.hash.replace('#','');
+if (['a1','a2','b1','b2'].includes(hashLevel)) {
+  const btn = document.querySelector(`.nav-tab[onclick*="'${hashLevel}'"]`);
+  if (btn) showLevel(hashLevel, btn);
 }
 </script>
 </body>
