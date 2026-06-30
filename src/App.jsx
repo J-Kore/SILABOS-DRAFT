@@ -1094,6 +1094,45 @@ export default function SilabosLanding() {
         </div>
       </section>
 
+          {/* Banner Aula — distinto de las tarjetas de app: enlaza a la zona de práctica para alumnos */}
+          <a
+            href="/aula/index.html"
+            onClick={() => track("abrir_aula")}
+            data-reveal
+            style={{
+              "--reveal-i": APPS.length,
+              display: "flex", alignItems: "center", gap: "1.25rem", flexWrap: "wrap",
+              textDecoration: "none",
+              background: "rgba(255,255,255,0.03)",
+              border: `1px dashed ${S.azul}55`,
+              borderRadius: "6px",
+              padding: "1.5rem 1.75rem",
+              marginBottom: "3rem",
+              transition: "border-color 0.2s, background 0.2s",
+            }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = `${S.azul}AA`; e.currentTarget.style.background = "rgba(255,255,255,0.05)"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = `${S.azul}55`; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
+          >
+            <div style={{ width: "44px", height: "44px", flexShrink: 0, borderRadius: "8px", background: `${S.azul}1A`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke={S.azul} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 3 2 8l10 5 10-5-10-5Z" />
+                <path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" />
+              </svg>
+            </div>
+            <div style={{ flex: "1 1 240px" }}>
+              <p style={{ fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: S.azul, marginBottom: "4px" }}>Para tus alumnos</p>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "18px", color: "#fff" }}>Aula · material de repaso por niveles</p>
+            </div>
+            <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.75)", lineHeight: "1.6", flex: "2 1 280px", margin: 0 }}>
+              Actividades interactivas (A1–B2) que uso en clase para presentar y practicar contenidos: teoría, textos comentados y ejercicios autocorregidos.
+            </p>
+            <span style={{ display: "flex", alignItems: "center", gap: "6px", color: S.azul, fontSize: "13px", fontWeight: 500, letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
+              Entrar al aula <span style={{ fontSize: "16px" }}>→</span>
+            </span>
+          </a>
+            
+
+
       {/* Para quién */}
       <section style={{ padding: "0 1.5rem 5rem" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
@@ -1211,43 +1250,6 @@ export default function SilabosLanding() {
               </div>
             ))}
           </div>
-
-          {/* Banner Aula — distinto de las tarjetas de app: enlaza a la zona de práctica para alumnos */}
-          <a
-            href="/aula/index.html"
-            onClick={() => track("abrir_aula")}
-            data-reveal
-            style={{
-              "--reveal-i": APPS.length,
-              display: "flex", alignItems: "center", gap: "1.25rem", flexWrap: "wrap",
-              textDecoration: "none",
-              background: "rgba(255,255,255,0.03)",
-              border: `1px dashed ${S.azul}55`,
-              borderRadius: "6px",
-              padding: "1.5rem 1.75rem",
-              marginBottom: "3rem",
-              transition: "border-color 0.2s, background 0.2s",
-            }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = `${S.azul}AA`; e.currentTarget.style.background = "rgba(255,255,255,0.05)"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = `${S.azul}55`; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; }}
-          >
-            <div style={{ width: "44px", height: "44px", flexShrink: 0, borderRadius: "8px", background: `${S.azul}1A`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke={S.azul} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 3 2 8l10 5 10-5-10-5Z" />
-                <path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5" />
-              </svg>
-            </div>
-            <div style={{ flex: "1 1 240px" }}>
-              <p style={{ fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: S.azul, marginBottom: "4px" }}>Para tus alumnos</p>
-              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "18px", color: "#fff" }}>Aula · material de repaso por niveles</p>
-            </div>
-            <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.75)", lineHeight: "1.6", flex: "2 1 280px", margin: 0 }}>
-              Actividades interactivas (A1–B2) que uso en clase para presentar y practicar contenidos: teoría, textos comentados y ejercicios autocorregidos.
-            </p>
-            <span style={{ display: "flex", alignItems: "center", gap: "6px", color: S.azul, fontSize: "13px", fontWeight: 500, letterSpacing: "0.04em", whiteSpace: "nowrap" }}>
-              Entrar al aula <span style={{ fontSize: "16px" }}>→</span>
-            </span>
-          </a>
 
           {/* Texto de interés / editorial */}
           <div data-reveal style={{ "--reveal-i": 0, borderTop: "0.5px solid rgba(255,255,255,0.07)", paddingTop: "3rem", marginBottom: "3rem", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2.5rem", alignItems: "start" }}>
