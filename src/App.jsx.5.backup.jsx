@@ -994,7 +994,7 @@ export default function SilabosLanding() {
 
         <div style={{ maxWidth: "1100px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "3rem", alignItems: "center", position: "relative", zIndex: 1 }}>
           {/* Copy */}
-          <div style={{ textAlign: "center" }}>
+          <div>
             <div data-reveal className="breathe-box" style={{ "--reveal-i": 0,
               display: "inline-flex", alignItems: "center", gap: "6px",
               background: `${S.fuxia}1A`, border: `0.5px solid ${S.fuxia}66`,
@@ -1017,13 +1017,10 @@ export default function SilabosLanding() {
                 WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
               }}>inteligencia</em>
             </h1>
-            <p data-reveal style={{ "--reveal-i": 2, fontSize: "17px", color: "rgba(255,255,255,0.72)", lineHeight: "1.7", maxWidth: "460px", margin: "0 auto 1.5rem", fontWeight: 500 }}>
-              Apps interactivas para practicar español con IA y formación para docentes que quieren crear sus propias apps educativas sin programar.
+            <p data-reveal style={{ "--reveal-i": 2, fontSize: "16px", color: "rgba(255,255,255,0.75)", lineHeight: "1.75", maxWidth: "400px", marginBottom: "2.5rem" }}>
+              Apps interactivas, recursos con IA y formación para docentes. Un laboratorio donde la tecnología está al servicio de la enseñanza, no al revés.
             </p>
-            <p data-reveal style={{ "--reveal-i": 2, fontSize: "16px", color: "rgba(255,255,255,0.72)", lineHeight: "1.75", maxWidth: "460px", margin: "0 auto 2.5rem" }}>
-              Un laboratorio donde la tecnología está al servicio de la enseñanza, no al revés. Para estudiantes de español como lengua extranjera (ELE) y para profesores de cualquier materia.
-            </p>
-            <div data-reveal style={{ "--reveal-i": 3, display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center", justifyContent: "center" }}>
+            <div data-reveal style={{ "--reveal-i": 3, display: "flex", gap: "1rem", flexWrap: "wrap", alignItems: "center" }}>
               <button onClick={() => scrollTo("ia-ele")} className="btn-primary breathe-box" style={{
                 fontFamily: "'DM Sans', sans-serif", fontSize: "13px", fontWeight: 500,
                 letterSpacing: "0.07em", textTransform: "uppercase", color: "#fff",
@@ -1261,7 +1258,7 @@ export default function SilabosLanding() {
                 ¿Por qué IA en el aprendizaje de idiomas?
               </h3>
               <p style={{ fontSize: "15px", color: "rgba(255,255,255,0.75)", lineHeight: "1.8" }}>
-                Aprender una lengua exige práctica constante, retroalimentación inmediata y exposición a contextos reales. Tres cosas difíciles de garantizar para cada estudiante con los recursos de un aula tradicional. Aquí es donde la inteligencia artificial marca la diferencia: permite crear apps para practicar la conjugación de verbos, la expresión oral o el vocabulario, que se adaptan al nivel de cada persona, responden al instante y ofrecen práctica ilimitada. Todo sin sustituir nunca el criterio pedagógico de quien enseña.
+                Aprender una lengua exige práctica constante, retroalimentación inmediata y exposición a contextos reales. Tres cosas difíciles de garantizar para cada estudiante con los recursos de un aula tradicional. Aquí es donde la inteligencia artificial marca la diferencia: permite crear experiencias que se adaptan al nivel de cada persona, responden al instante y ofrecen práctica ilimitada sin sustituir nunca el criterio pedagógico de quien enseña.
               </p>
             </div>
             <div>
@@ -1384,7 +1381,7 @@ export default function SilabosLanding() {
         <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 1 }}>
 
           {/* Header */}
-          <div data-reveal style={{ "--reveal-i": 0, marginBottom: "3rem", maxWidth: "680px", marginLeft: "auto", marginRight: "auto", textAlign: "center" }}>
+          <div data-reveal style={{ "--reveal-i": 0, marginBottom: "3rem", maxWidth: "640px" }}>
             <div style={{
               display: "inline-flex", alignItems: "center", gap: "8px",
               background: `${S.amarillo}1A`, border: `0.5px solid ${S.amarillo}66`,
@@ -1399,7 +1396,7 @@ export default function SilabosLanding() {
               Crea tus propias apps educativas <em style={{ fontStyle: "italic", background: `linear-gradient(135deg, ${S.amarillo}, ${S.fuxia})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>sin saber programar</em>
             </h2>
             <p style={{ fontSize: "16px", color: "rgba(255,255,255,0.75)", lineHeight: "1.75" }}>
-              Un taller práctico de IA para profesores de cualquier materia. Aprende a usar la inteligencia artificial en el aula para construir tus propias apps educativas y actividades interactivas a la medida de tus clases, partiendo de cero. Sin código, sin conocimientos técnicos previos: solo tus ideas y las herramientas adecuadas.
+              Un taller práctico para docentes de cualquier materia. Aprende a usar la inteligencia artificial para construir actividades y aplicaciones interactivas a la medida de tu aula, partiendo de cero. Sin código, sin conocimientos técnicos previos: solo tus ideas y las herramientas adecuadas.
             </p>
           </div>
 
