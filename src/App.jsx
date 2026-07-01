@@ -55,7 +55,7 @@ const APPS = [
     estado: "disponible",
   },
   {
-    id: 5,
+    id: 6,
     nombre: "Detective Del Pasado",
     categoria: "Comprensión Lectora",
     descripcion: "Practica e interioriza las diferencias de uso entre Pretérito Indefinido y Pretérito Imperfecto.",
@@ -65,7 +65,7 @@ const APPS = [
     estado: "disponible",
   },
   {
-    id: 6,
+    id: 5,
     nombre: "ComuniTabu",
     categoria: "Expresión Oral",
     descripcion: "Dinámica de tabú adaptada al aula de ELE. Practica la descripción y el vocabulario en acción.",
@@ -75,7 +75,7 @@ const APPS = [
     estado: "desarrollo",
   },
   {
-    id: 7,
+    id: 6,
     nombre: "Operación ELE",
     categoria: "Inmersión",
     descripcion: "Aventura narrativa interactiva para aprender español tomando decisiones reales en la historia.",
@@ -1053,11 +1053,24 @@ export default function SilabosLanding() {
                     borderLeft: `2px solid ${app.color}`,
                     borderRadius: "4px", padding: "0.875rem 1rem",
                     cursor: "pointer", textAlign: "left", width: "100%",
+                    position: "relative",
                   }}
                   onMouseEnter={() => setHoveredApp(app.id)}
                   onMouseLeave={() => setHoveredApp(null)}
                 >
-                  <p style={{ fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: app.color, marginBottom: "4px" }}>{app.categoria}</p>
+                  <span style={{
+                    position: "absolute", top: "0.8rem", right: "1rem",
+                    display: "inline-flex", alignItems: "center", gap: "5px",
+                    fontSize: "10px", fontWeight: 500, letterSpacing: "0.05em", textTransform: "uppercase",
+                    color: hoveredApp === app.id ? S.bg : app.color,
+                    background: hoveredApp === app.id ? app.color : "transparent",
+                    border: `0.5px solid ${app.color}66`,
+                    borderRadius: "3px", padding: "4px 10px",
+                    transition: "background 0.2s ease, color 0.2s ease",
+                  }}>
+                    Abrir app <span style={{ transform: hoveredApp === app.id ? "translateX(3px)" : "none", transition: "transform 0.2s ease" }}>→</span>
+                  </span>
+                  <p style={{ fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: app.color, marginBottom: "4px", paddingRight: "95px" }}>{app.categoria}</p>
                   <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "16px", color: "#fff", marginBottom: "6px" }}>{app.nombre}</p>
                   <div style={{ display: "flex", gap: "5px", flexWrap: "wrap" }}>
                     {app.tags.map((tag, j) => (
