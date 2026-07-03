@@ -21,7 +21,7 @@ const APPS = [
     descripcion: "Practica la conjugación verbal de forma interactiva. Tiempos, modos y personas en contexto real.",
     tags: ["Expresión Escrita", "Conjugación", "Verbos", "Tiempos"],
     color: "#FF2DA6",
-    url: "https://conjuanjugator-react.vercel.app",
+    url: "https://conjuanjugator.silabos.com",
     estado: "disponible",
   },
   {
@@ -31,7 +31,7 @@ const APPS = [
     descripcion: "Entrena la pronunciación y el ritmo del español con actividades de conversación guiada.",
     tags: ["Expresión Oral", "Conjugación", "Verbos", "Tiempos"],
     color: "#A855F7",
-    url: "https://convozjugator.vercel.app/",
+    url: "https://conjuanjugator.silabos.com",
     estado: "disponible",
   },
   {
@@ -41,7 +41,7 @@ const APPS = [
     descripcion: "Aprende colocaciones léxicas y el uso del imperativo en situaciones comunicativas auténticas.",
     tags: ["Colocaciones", "Imperativo", "Léxico"],
     color: "#00C8FF",
-    url: "https://ponlo-silabos.vercel.app/",
+    url: "https://ponlo.silabos.com/",
     estado: "disponible",
   },
   {
@@ -51,7 +51,7 @@ const APPS = [
     descripcion: "Aprende colocaciones léxicas y el uso del imperativo en situaciones comunicativas auténticas.",
     tags: ["Colocaciones", "Imperativo", "Léxico"],
     color: "#A855F7",
-    url: "https://oyerobot.vercel.app/",
+    url: "https://oyerobot.silabos.com/",
     estado: "disponible",
   },
   {
@@ -61,7 +61,7 @@ const APPS = [
     descripcion: "Practica e interioriza las diferencias de uso entre Pretérito Indefinido y Pretérito Imperfecto.",
     tags: ["Pasado Indefinido", "Pasado Imperfecto", "Verbos", "Contraste de Pasados"],
     color: "#39FF14",
-    url: "https://detective-del-pasado.vercel.app/",
+    url: "https://detectivedelpasado.silabos.com/",
     estado: "disponible",
   },
   {
