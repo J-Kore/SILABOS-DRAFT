@@ -31,7 +31,7 @@ const APPS = [
     descripcion: "Entrena la pronunciación y el ritmo del español con actividades de conversación guiada.",
     tags: ["Expresión Oral", "Conjugación", "Verbos", "Tiempos"],
     color: "#A855F7",
-    url: "https://conjuanjugator.silabos.com",
+    url: "https://convozjugator.silabos.com",
     estado: "disponible",
   },
   {
