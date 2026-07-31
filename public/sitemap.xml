@@ -94,11 +94,33 @@
   </url>
 
     <url>
-    <loc>https://silabos.com/aula/b1/presente-subjuntivo.html</loc>
+    <loc>https://silabos.com/aula/b1/forma-presente-subjuntivo.html</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+   
+    <url>
+    <loc>https://silabos.com/aula/b1/usos-presente-subjuntivo-1.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+      <url>
+    <loc>https://silabos.com/aula/b1/usos-presente-subjuntivo-2.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+        <url>
+    <loc>https://silabos.com/aula/b1/usos-presente-subjuntivo-3.html</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 
 </urlset>
 
